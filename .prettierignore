@@ -1,0 +1,7 @@
+AGENTS.md
+sources/
+.next/
+node_modules/
+coverage/
+playwright-report/
+test-results/

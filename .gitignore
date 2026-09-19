@@ -1,0 +1,25 @@
+# dependencies
+/node_modules
+
+# Next.js output
+/.next/
+/out/
+
+# testing
+/coverage/
+/playwright-report/
+/test-results/
+
+# local environment variables and secrets
+.env*
+!.env.example
+
+# logs and local tooling
+npm-debug.log*
+.DS_Store
+*.tsbuildinfo
+.sites-runtime/
+
+# Codex project metadata
+AGENTS.md
+sources/
