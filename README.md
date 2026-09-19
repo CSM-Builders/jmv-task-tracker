@@ -4,6 +4,10 @@ JMV Task Tracker is a responsive personal productivity dashboard built with the 
 
 The application is immediately usable in **Demo Mode** without an account. When Supabase is configured, it adds email/password authentication, private PostgreSQL storage, server-side validation, and Row Level Security (RLS) so each person can access only their own tasks.
 
+## Live application
+
+The production application is available at: https://jmv-task-tracker.vercel.app
+
 ## Screenshots
 
 Add portfolio screenshots here after you have run the app locally:
