@@ -6,14 +6,19 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: "html",
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL: "http://127.0.0.1:3100",
     trace: "on-first-retry",
   },
   webServer: {
-    command: "npm run start",
-    url: "http://127.0.0.1:3000",
+    command: "npm run start -- --port 3100",
+    url: "http://127.0.0.1:3100",
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
+    env: {
+      ...process.env,
+      NEXT_PUBLIC_FORCE_DEMO_MODE:
+        process.env.RUN_SUPABASE_INTEGRATION === "1" ? "0" : "1",
+    },
   },
   projects: [
     {
@@ -22,7 +27,11 @@ export default defineConfig({
     },
     {
       name: "mobile-chromium",
-      use: { ...devices["Pixel 7"], channel: "chrome" },
+      use: {
+        ...devices["Pixel 7"],
+        channel: "chrome",
+        timezoneId: "America/Los_Angeles",
+      },
     },
   ],
 });

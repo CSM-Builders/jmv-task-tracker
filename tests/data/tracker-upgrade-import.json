@@ -1,0 +1,952 @@
+{
+  "schemaVersion": 1,
+  "dryRun": true,
+  "project": {
+    "externalKey": "ai-builder-partner-prep-2026-09-20",
+    "name": "AI Builder Partner Interview Prep – 4-Day Sprint",
+    "description": "28 focused hours. Executive AI Command Center build and interview preparation. Synthetic data and mock integrations.",
+    "timezone": "Asia/Manila",
+    "startDate": "2026-09-20",
+    "endDate": "2026-09-23"
+  },
+  "tasks": [
+    {
+      "externalKey": "D1",
+      "parentExternalKey": null,
+      "title": "Day 1 – PRD and Architecture",
+      "description": "PRD, architecture, threat model and a tested skeleton.\nChildren: D1.1, D1.2, D1.3, D1.4, D1.5, D1.6, D1.7, D1.8\nComplete children before marking this milestone complete. Estimate is derived from children: 420 minutes.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 1,
+      "category": "Day milestone",
+      "estimatedMinutes": null,
+      "dueDate": "2026-09-20T23:59:59+08:00",
+      "dependencyExternalKeys": [],
+      "definitionOfDone": "All eight children meet their definition of done and required evidence is saved.",
+      "requiredEvidence": "PRD, architecture, threat model and a tested skeleton.",
+      "interviewCompetency": "Day 1 – PRD and Architecture",
+      "resourceLinks": [],
+      "notes": "Parent progress and time derive from children; do not double-count.",
+      "tags": [
+        "ai-builder-prep",
+        "day-1"
+      ]
+    },
+    {
+      "externalKey": "D2",
+      "parentExternalKey": null,
+      "title": "Day 2 – Claude Code and Agent Workflows",
+      "description": "Controlled development, five roles, MCP and bounded loop evidence.\nChildren: D2.1, D2.2, D2.3, D2.4, D2.5, D2.6, D2.7, D2.8\nComplete children before marking this milestone complete. Estimate is derived from children: 420 minutes.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 2,
+      "category": "Day milestone",
+      "estimatedMinutes": null,
+      "dueDate": "2026-09-21T23:59:59+08:00",
+      "dependencyExternalKeys": [],
+      "definitionOfDone": "All eight children meet their definition of done and required evidence is saved.",
+      "requiredEvidence": "Controlled development, five roles, MCP and bounded loop evidence.",
+      "interviewCompetency": "Day 2 – Claude Code and Agent Workflows",
+      "resourceLinks": [],
+      "notes": "Parent progress and time derive from children; do not double-count.",
+      "tags": [
+        "ai-builder-prep",
+        "day-2"
+      ]
+    },
+    {
+      "externalKey": "D3",
+      "parentExternalKey": null,
+      "title": "Day 3 – Agent SDK and Application Build",
+      "description": "Working cited briefing, approvals, durable execution and evaluations.\nChildren: D3.1, D3.2, D3.3, D3.4, D3.5, D3.6, D3.7, D3.8\nComplete children before marking this milestone complete. Estimate is derived from children: 420 minutes.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 3,
+      "category": "Day milestone",
+      "estimatedMinutes": null,
+      "dueDate": "2026-09-22T23:59:59+08:00",
+      "dependencyExternalKeys": [],
+      "definitionOfDone": "All eight children meet their definition of done and required evidence is saved.",
+      "requiredEvidence": "Working cited briefing, approvals, durable execution and evaluations.",
+      "interviewCompetency": "Day 3 – Agent SDK and Application Build",
+      "resourceLinks": [],
+      "notes": "Parent progress and time derive from children; do not double-count.",
+      "tags": [
+        "ai-builder-prep",
+        "day-3"
+      ]
+    },
+    {
+      "externalKey": "D4",
+      "parentExternalKey": null,
+      "title": "Day 4 – Security, Deployment, and Interview Rehearsal",
+      "description": "Security review, installable release, recovery drill, demo and interviews.\nChildren: D4.1, D4.2, D4.3, D4.4, D4.5, D4.6, D4.7, D4.8\nComplete children before marking this milestone complete. Estimate is derived from children: 420 minutes.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 4,
+      "category": "Day milestone",
+      "estimatedMinutes": null,
+      "dueDate": "2026-09-23T23:59:59+08:00",
+      "dependencyExternalKeys": [],
+      "definitionOfDone": "All eight children meet their definition of done and required evidence is saved.",
+      "requiredEvidence": "Security review, installable release, recovery drill, demo and interviews.",
+      "interviewCompetency": "Day 4 – Security, Deployment, and Interview Rehearsal",
+      "resourceLinks": [],
+      "notes": "Parent progress and time derive from children; do not double-count.",
+      "tags": [
+        "ai-builder-prep",
+        "day-4"
+      ]
+    },
+    {
+      "externalKey": "D1.1",
+      "parentExternalKey": "D1",
+      "title": "Discover the executive problem",
+      "description": "Why it matters: Shows you can translate executive frustration into an operational problem.\n\nSteps:\n- [ ] Spend 5 minutes reading the fictional brief in 02-PRD.md. Label every scenario assumption as fictional.\n- [ ] Ask the ten discovery questions in 05-Interview.md aloud. Answer as the fictional CEO for 15 minutes.\n- [ ] Draw the current email-to-follow-up workflow and mark two failure points.\n- [ ] Write one outcome, a baseline-measurement method, three constraints, and five unresolved questions.\n- [ ] Record a 60-second playback and check that it describes a business problem before naming tools.\n\nDeliverable: discovery.md and a current-state workflow\n\nDefinition of done: One user, one painful workflow, one measurable outcome, assumptions and unanswered questions documented.\n\nEvidence: Discovery notes; 60-second recording; workflow sketch\n\nInterview questions: How do you handle a vague CEO request? What would you measure first?\n\nExecutive explanation: I first identify which decisions get delayed and what information is missing.\n\nCommon mistakes and recovery: Mistake: accepting “build an AI assistant” as a requirement. Recovery: ask for the last real example and the consequence of delay.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 1,
+      "category": "Discovery",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-20T23:59:59+08:00",
+      "dependencyExternalKeys": [],
+      "definitionOfDone": "One user, one painful workflow, one measurable outcome, assumptions and unanswered questions documented.",
+      "requiredEvidence": "Discovery notes; 60-second recording; workflow sketch",
+      "interviewCompetency": "How do you handle a vague CEO request? What would you measure first?",
+      "resourceLinks": [
+        "https://www.atlassian.com/agile/product-management/requirements"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D1.1",
+      "tags": [
+        "ai-builder-prep",
+        "day-1"
+      ]
+    },
+    {
+      "externalKey": "D1.2",
+      "parentExternalKey": "D1",
+      "title": "Map future workflow, roles and risky actions",
+      "description": "Why it matters: Defines who can see information and who is allowed to act.\n\nSteps:\n- [ ] Map ingest, extract, validate, review, approve, execute, audit.\n- [ ] List operator, approver, worker and model permissions using the PRD matrix.\n- [ ] Classify read-only summaries, proposed actions and consequential writes.\n- [ ] Choose mock create_task as the sole executable action; explicitly exclude outbound email and real calendar changes.\n- [ ] Write user stories for daily briefing, source inspection, approval and recovery.\n\nDeliverable: workflow.md and permission matrix\n\nDefinition of done: Every state has an owner; the model has no approval or execution authority.\n\nEvidence: Future-state diagram; roles matrix; five user stories\n\nInterview questions: Authentication versus authorization? Which actions need approval?\n\nExecutive explanation: The assistant prepares the work, while the executive keeps control of commitments.\n\nCommon mistakes and recovery: Mistake: a UI button is the only control. Recovery: enforce the same rule in the server and worker.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 1,
+      "category": "Requirements",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-20T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D1.1"
+      ],
+      "definitionOfDone": "Every state has an owner; the model has no approval or execution authority.",
+      "requiredEvidence": "Future-state diagram; roles matrix; five user stories",
+      "interviewCompetency": "Authentication versus authorization? Which actions need approval?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/permissions"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D1.2",
+      "tags": [
+        "ai-builder-prep",
+        "day-1"
+      ]
+    },
+    {
+      "externalKey": "D1.3",
+      "parentExternalKey": "D1",
+      "title": "Finalize the implementation-ready PRD",
+      "description": "Why it matters: Precise acceptance criteria reduce coding-agent rework.\n\nSteps:\n- [ ] Read 02-PRD.md and replace only explicitly marked business assumptions.\n- [ ] Confirm required fields, null semantics, confidence rules and citation checks.\n- [ ] Walk each acceptance criterion through a concrete input and expected output.\n- [ ] Number requirements and link each to a planned fixture or test.\n- [ ] Ask the coding agent in plan mode to find ambiguities without implementing; resolve the top three.\n\nDeliverable: docs/PRD.md with requirement-to-test matrix\n\nDefinition of done: No unresolved question blocks the core; non-goals, failure states and acceptance tests are explicit.\n\nEvidence: PRD revision; ambiguity review; traceability matrix\n\nInterview questions: What makes a PRD executable? Functional versus nonfunctional requirements?\n\nExecutive explanation: This document turns the desired result into checks we can demonstrate.\n\nCommon mistakes and recovery: Mistake: describing features without failure behavior. Recovery: add invalid, duplicate, unauthorized and timeout examples.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 1,
+      "category": "PRD",
+      "estimatedMinutes": 75,
+      "dueDate": "2026-09-20T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D1.1",
+        "D1.2"
+      ],
+      "definitionOfDone": "No unresolved question blocks the core; non-goals, failure states and acceptance tests are explicit.",
+      "requiredEvidence": "PRD revision; ambiguity review; traceability matrix",
+      "interviewCompetency": "What makes a PRD executable? Functional versus nonfunctional requirements?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/common-workflows"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D1.3",
+      "tags": [
+        "ai-builder-prep",
+        "day-1"
+      ]
+    },
+    {
+      "externalKey": "D1.4",
+      "parentExternalKey": "D1",
+      "title": "Design persistence and integration contracts",
+      "description": "Why it matters: Persistence makes approvals and retries reliable across process restarts.\n\nSteps:\n- [ ] Copy the entity list and contracts from 02-PRD.md.\n- [ ] Write an initial SQL migration with foreign keys, unique event keys and job indexes.\n- [ ] Define input and output Zod schemas, including nullable owners and deadlines.\n- [ ] Trace duplicate ingest and concurrent approval through database transactions.\n- [ ] Write five sample request/response pairs and decide UTC storage versus Manila display.\n\nDeliverable: 001_init.sql; schemas.ts; contracts.md\n\nDefinition of done: Duplicate events cannot create new work; approval version and action hash are persisted.\n\nEvidence: Migration; contract examples; duplicate sequence diagram\n\nInterview questions: Why PostgreSQL? How do indexes and transactions help?\n\nExecutive explanation: The database records what happened and prevents us from repeating an action accidentally.\n\nCommon mistakes and recovery: Mistake: an in-memory Set for deduplication. Recovery: use database uniqueness and test after restart.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 1,
+      "category": "Data and API",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-20T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D1.3"
+      ],
+      "definitionOfDone": "Duplicate events cannot create new work; approval version and action hash are persisted.",
+      "requiredEvidence": "Migration; contract examples; duplicate sequence diagram",
+      "interviewCompetency": "Why PostgreSQL? How do indexes and transactions help?",
+      "resourceLinks": [
+        "https://www.postgresql.org/docs/current/ddl-constraints.html"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D1.4",
+      "tags": [
+        "ai-builder-prep",
+        "day-1"
+      ]
+    },
+    {
+      "externalKey": "D1.5",
+      "parentExternalKey": "D1",
+      "title": "Draw architecture and write five ADRs",
+      "description": "Why it matters: Tests whether you can explain trade-offs rather than recite tools.\n\nSteps:\n- [ ] Draw the PRD architecture from memory, then compare it with the reference.\n- [ ] Write ADRs 1, 2, 4, 6 and 9 from 04-Decisions-Theory.md in your own words.\n- [ ] For each, include reversal conditions and a measurable cost or operational implication.\n- [ ] Rehearse one 30-second executive answer and one two-minute technical answer.\n- [ ] Ask a reviewer to challenge your deployment and queue choices.\n\nDeliverable: Architecture diagram; five ADRs\n\nDefinition of done: Each ADR has context, alternatives, decision, benefits, risks and a reversal trigger.\n\nEvidence: Diagram; ADR files; two recorded answers\n\nInterview questions: Why Railway instead of Vercel? Why not microservices or n8n?\n\nExecutive explanation: We are choosing the smallest design that can recover safely and be handed over.\n\nCommon mistakes and recovery: Mistake: “scalable” without a load target. Recovery: defend the 20-event demonstration workload first.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 1,
+      "category": "Architecture",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-20T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D1.3",
+        "D1.4"
+      ],
+      "definitionOfDone": "Each ADR has context, alternatives, decision, benefits, risks and a reversal trigger.",
+      "requiredEvidence": "Diagram; ADR files; two recorded answers",
+      "interviewCompetency": "Why Railway instead of Vercel? Why not microservices or n8n?",
+      "resourceLinks": [
+        "https://docs.railway.com/deployments/healthchecks"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D1.5",
+      "tags": [
+        "ai-builder-prep",
+        "day-1"
+      ]
+    },
+    {
+      "externalKey": "D1.6",
+      "parentExternalKey": "D1",
+      "title": "Threat-model the trust boundaries",
+      "description": "Why it matters: Shows you can treat AI as shared infrastructure with constrained authority.\n\nSteps:\n- [ ] List assets and trust boundaries: source text, model output, application, database and tools.\n- [ ] Trace malicious instructions in email and poisoned tool descriptions.\n- [ ] Record threat, control, residual risk and test for six cases.\n- [ ] Separate secret access from the model process and define redacted logging.\n- [ ] Add stale approval, cross-workspace access and unknown execution outcome tests.\n\nDeliverable: threat-model.md\n\nDefinition of done: Six threats each have a code-level control and observable negative test.\n\nEvidence: Threat table; trust-boundary diagram; abuse cases\n\nInterview questions: Can prompt injection be solved with a system prompt? What is tool poisoning?\n\nExecutive explanation: Incoming messages are evidence to analyze, never authority to change the system.\n\nCommon mistakes and recovery: Mistake: relying on prompt wording as a security boundary. Recovery: remove tools and enforce permissions in code.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 1,
+      "category": "Security",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-20T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D1.2",
+        "D1.4",
+        "D1.5"
+      ],
+      "definitionOfDone": "Six threats each have a code-level control and observable negative test.",
+      "requiredEvidence": "Threat table; trust-boundary diagram; abuse cases",
+      "interviewCompetency": "Can prompt injection be solved with a system prompt? What is tool poisoning?",
+      "resourceLinks": [
+        "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D1.6",
+      "tags": [
+        "ai-builder-prep",
+        "day-1"
+      ]
+    },
+    {
+      "externalKey": "D1.7",
+      "parentExternalKey": "D1",
+      "title": "Create the repository, skeleton and CI",
+      "description": "Why it matters: Turns planning into an installable, testable starting point.\n\nSteps:\n- [ ] Follow setup commands in 03-Build-Labs.md in a new executive-ai-command-center folder.\n- [ ] Check Node, Git, Claude Code and Docker availability; use hosted PostgreSQL if Docker is unavailable.\n- [ ] Create src modules, package scripts, .env.example with names only, and .gitignore.\n- [ ] Implement CLI help, health endpoint and a deterministic fake model adapter.\n- [ ] Add one meaningful schema test and CI for install, typecheck, tests and build; commit the green skeleton.\n\nDeliverable: Runnable skeleton and CI workflow\n\nDefinition of done: A fresh install prints CLI help; malformed input fails; CI commands pass locally.\n\nEvidence: Commit hash; command transcript; CI link if a remote is configured\n\nInterview questions: What belongs in CI? How do you make an app easy to install?\n\nExecutive explanation: We can now build on a repeatable foundation and detect mistakes early.\n\nCommon mistakes and recovery: Mistake: spending this block on dashboard styling or OAuth. Recovery: keep CLI delivery and mock connectors.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 1,
+      "category": "Foundations",
+      "estimatedMinutes": 75,
+      "dueDate": "2026-09-20T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D1.3",
+        "D1.4",
+        "D1.6"
+      ],
+      "definitionOfDone": "A fresh install prints CLI help; malformed input fails; CI commands pass locally.",
+      "requiredEvidence": "Commit hash; command transcript; CI link if a remote is configured",
+      "interviewCompetency": "What belongs in CI? How do you make an app easy to install?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/overview"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D1.7",
+      "tags": [
+        "ai-builder-prep",
+        "day-1"
+      ]
+    },
+    {
+      "externalKey": "D1.8",
+      "parentExternalKey": "D1",
+      "title": "Run the Day 1 gate and explanation drill",
+      "description": "Why it matters: Ensures you understand the design before delegating implementation.\n\nSteps:\n- [ ] Check PRD, contracts, migration, architecture, threat model and green skeleton.\n- [ ] Explain one request end to end without reading notes.\n- [ ] Answer three Day 1 interview questions using decision, reason, risk and evidence.\n- [ ] Write the next handoff in progress.md and list missing evidence.\n- [ ] Stop adding scope; reserve the next day for controlled implementation.\n\nDeliverable: Day 1 evidence index and handoff\n\nDefinition of done: You can explain the flow in three minutes and name the largest remaining risk.\n\nEvidence: Review checklist; recording; progress.md\n\nInterview questions: Where is the main failure boundary? What would you cut first?\n\nExecutive explanation: The scope is clear, the risks are visible, and the first build has a passing check.\n\nCommon mistakes and recovery: Mistake: treating generated documents as understanding. Recovery: redraw and explain with the documents closed.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 1,
+      "category": "Review",
+      "estimatedMinutes": 30,
+      "dueDate": "2026-09-20T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D1.5",
+        "D1.6",
+        "D1.7"
+      ],
+      "definitionOfDone": "You can explain the flow in three minutes and name the largest remaining risk.",
+      "requiredEvidence": "Review checklist; recording; progress.md",
+      "interviewCompetency": "Where is the main failure boundary? What would you cut first?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/memory"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D1.8",
+      "tags": [
+        "ai-builder-prep",
+        "day-1"
+      ]
+    },
+    {
+      "externalKey": "D2.1",
+      "parentExternalKey": "D2",
+      "title": "Configure CLAUDE.md and plan mode",
+      "description": "Why it matters: Good context improves consistency without giving the agent unlimited freedom.\n\nSteps:\n- [ ] Record claude --version and claude --help; do not assume the CLI found in another shell is installed here.\n- [ ] Copy the project instruction template in 03-Build-Labs.md.\n- [ ] Start claude --permission-mode plan and request a plan for only ingestion and schema validation.\n- [ ] Review files, tests, risks and acceptance criteria before allowing edits.\n- [ ] Use /context and /memory to inspect what is loaded; save a short handoff before clearing context.\n\nDeliverable: CLAUDE.md; implementation plan; version record\n\nDefinition of done: Agent identifies the scope and stops at the agreed plan without changing application code.\n\nEvidence: Version output; plan; context screenshot\n\nInterview questions: What belongs in CLAUDE.md? Is plan mode an authorization boundary?\n\nExecutive explanation: I give the coding assistant a clear brief and review the approach before implementation.\n\nCommon mistakes and recovery: Mistake: a giant instruction file or hidden contradictory rules. Recovery: keep rules short and move procedures into a skill.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 2,
+      "category": "Claude Code",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-21T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D1.8"
+      ],
+      "definitionOfDone": "Agent identifies the scope and stops at the agreed plan without changing application code.",
+      "requiredEvidence": "Version output; plan; context screenshot",
+      "interviewCompetency": "What belongs in CLAUDE.md? Is plan mode an authorization boundary?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/memory"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D2.1",
+      "tags": [
+        "ai-builder-prep",
+        "day-2"
+      ]
+    },
+    {
+      "externalKey": "D2.2",
+      "parentExternalKey": "D2",
+      "title": "Create and evaluate a project skill",
+      "description": "Why it matters: Makes repeated review work consistent and inspectable.\n\nSteps:\n- [ ] Create .claude/skills/review-contract/SKILL.md using the supplied template.\n- [ ] Invoke /review-contract against the ingestion contract.\n- [ ] Give it a deliberately incomplete contract and confirm it finds null, error and idempotency gaps.\n- [ ] Check installed-version help for legacy .claude/commands support; use a skill as the primary slash command.\n- [ ] Record what the skill improves, what it misses and how you would maintain it.\n\nDeliverable: Project review skill and two evaluation examples\n\nDefinition of done: The skill identifies at least three planted gaps and does not edit files.\n\nEvidence: SKILL.md; good/bad contract outputs\n\nInterview questions: Skill versus command versus subagent? How do you evaluate a skill?\n\nExecutive explanation: This is a reusable review procedure so important checks are not forgotten.\n\nCommon mistakes and recovery: Mistake: treating a downloaded skill as trusted policy. Recovery: review its source, dependencies and requested access first.",
+      "status": "todo",
+      "priority": "medium",
+      "dayNumber": 2,
+      "category": "Skills",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-21T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D2.1"
+      ],
+      "definitionOfDone": "The skill identifies at least three planted gaps and does not edit files.",
+      "requiredEvidence": "SKILL.md; good/bad contract outputs",
+      "interviewCompetency": "Skill versus command versus subagent? How do you evaluate a skill?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/skills"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D2.2",
+      "tags": [
+        "ai-builder-prep",
+        "day-2"
+      ]
+    },
+    {
+      "externalKey": "D2.3",
+      "parentExternalKey": "D2",
+      "title": "Add and test deterministic hooks",
+      "description": "Why it matters: Separates repeatable checks from model judgment.\n\nSteps:\n- [ ] Add the supplied PostToolUse validation hook in project settings.\n- [ ] Use a dummy TypeScript edit that fails typechecking, then fix it and observe the hook result.\n- [ ] Add a narrow PreToolUse deny for a fake protected fixture path, using documented hook output.\n- [ ] Prove the deny with a harmless attempted edit; do not test on real secrets.\n- [ ] Explain that hooks execute with local permissions and CI remains the release gate.\n\nDeliverable: Hook configuration; validation log; protected-path test\n\nDefinition of done: Valid edit passes, invalid edit is reported, and protected fake path is unchanged.\n\nEvidence: Settings diff; hook output; before/after file hash\n\nInterview questions: PreToolUse versus PostToolUse? Why can hooks themselves be risky?\n\nExecutive explanation: Routine checks run every time instead of depending on the assistant remembering them.\n\nCommon mistakes and recovery: Mistake: unsafe shell interpolation of tool arguments. Recovery: parse JSON and invoke fixed commands without a shell.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 2,
+      "category": "Hooks",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-21T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D2.1"
+      ],
+      "definitionOfDone": "Valid edit passes, invalid edit is reported, and protected fake path is unchanged.",
+      "requiredEvidence": "Settings diff; hook output; before/after file hash",
+      "interviewCompetency": "PreToolUse versus PostToolUse? Why can hooks themselves be risky?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/hooks"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D2.3",
+      "tags": [
+        "ai-builder-prep",
+        "day-2"
+      ]
+    },
+    {
+      "externalKey": "D2.4",
+      "parentExternalKey": "D2",
+      "title": "Create five restricted development roles",
+      "description": "Why it matters: Demonstrates useful separation of implementation and independent review.\n\nSteps:\n- [ ] Create five .claude/agents files from the role specifications in 03-Build-Labs.md.\n- [ ] Invoke each explicitly on its bounded assignment, sequentially first.\n- [ ] Verify analyst/security/release roles lack write and shell tools.\n- [ ] Give the security reviewer a fixture with a planted bypass and ask for evidence-backed findings.\n- [ ] Score each role for correctness, scope adherence, evidence and cost; retain only roles that help.\n\nDeliverable: Five role definitions and scored trial outputs\n\nDefinition of done: All five invoked; reviewers cannot edit; the planted bypass is reported.\n\nEvidence: Agent files; invocation transcript; scorecard\n\nInterview questions: Why use a separate reviewer? When are five agents too many?\n\nExecutive explanation: The builder and reviewer have different responsibilities, with access limited to their work.\n\nCommon mistakes and recovery: Mistake: spawning every role for every task. Recovery: invoke roles only when separation adds independent evidence.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 2,
+      "category": "Subagents",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-21T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D2.1",
+        "D2.2"
+      ],
+      "definitionOfDone": "All five invoked; reviewers cannot edit; the planted bypass is reported.",
+      "requiredEvidence": "Agent files; invocation transcript; scorecard",
+      "interviewCompetency": "Why use a separate reviewer? When are five agents too many?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/sub-agents"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D2.4",
+      "tags": [
+        "ai-builder-prep",
+        "day-2"
+      ]
+    },
+    {
+      "externalKey": "D2.5",
+      "parentExternalKey": "D2",
+      "title": "Practice isolation, background work and handoffs",
+      "description": "Why it matters: Shows you can coordinate AI-assisted changes without losing control of the repository.\n\nSteps:\n- [ ] Commit the baseline and create an explicit Git worktree for ingestion.\n- [ ] Have implementation engineer implement only ingestion and its unit tests.\n- [ ] Run a read-only security review in the background while you inspect the contracts in the main session.\n- [ ] Collect its result; compare changed files with the assigned scope and rerun tests.\n- [ ] Save a concise handoff and resume in a fresh session; review and integrate only the intended commit.\n\nDeliverable: Ingestion commit; worktree and handoff evidence\n\nDefinition of done: No unrelated diff; tests pass; fresh session explains the state accurately.\n\nEvidence: git diff; test result; review findings; progress.md\n\nInterview questions: What does a worktree isolate? What does it not isolate?\n\nExecutive explanation: Independent work stays separate until it has been reviewed and tested.\n\nCommon mistakes and recovery: Mistake: assuming worktrees isolate databases or credentials. Recovery: separate test database names and use mock secrets.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 2,
+      "category": "Worktrees",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-21T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D2.4",
+        "D1.7"
+      ],
+      "definitionOfDone": "No unrelated diff; tests pass; fresh session explains the state accurately.",
+      "requiredEvidence": "git diff; test result; review findings; progress.md",
+      "interviewCompetency": "What does a worktree isolate? What does it not isolate?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/worktrees"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D2.5",
+      "tags": [
+        "ai-builder-prep",
+        "day-2"
+      ]
+    },
+    {
+      "externalKey": "D2.6",
+      "parentExternalKey": "D2",
+      "title": "Review and connect one local mock MCP server",
+      "description": "Why it matters: Shows protocol understanding without wasting time on production OAuth.\n\nSteps:\n- [ ] Use the in-process mock memory tool from the SDK lab; for Claude Code wrap the same read function in a reviewed stdio server.\n- [ ] Record repository origin, exact version or commit, tools, permissions and network destinations.\n- [ ] Configure the local server with claude mcp add using the exact local script path.\n- [ ] Use /mcp and call one read-only mock lookup; deny or omit write capabilities.\n- [ ] Return an unavailable error and a malicious instruction in fixture data; verify controlled handling.\n\nDeliverable: MCP configuration; provenance record; three tool traces\n\nDefinition of done: Read works; unavailable is explicit; malicious content triggers no unauthorized action.\n\nEvidence: Redacted config; source commit; traces\n\nInterview questions: MCP host/client/server? Why prefer direct API for one connector?\n\nExecutive explanation: We test the connector with limited access before trusting it with company information.\n\nCommon mistakes and recovery: Mistake: unpinned npx downloads with broad credentials. Recovery: inspect and pin locally, then connect only needed tools.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 2,
+      "category": "MCP",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-21T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D2.3",
+        "D2.4"
+      ],
+      "definitionOfDone": "Read works; unavailable is explicit; malicious content triggers no unauthorized action.",
+      "requiredEvidence": "Redacted config; source commit; traces",
+      "interviewCompetency": "MCP host/client/server? Why prefer direct API for one connector?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/mcp"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D2.6",
+      "tags": [
+        "ai-builder-prep",
+        "day-2"
+      ]
+    },
+    {
+      "externalKey": "D2.7",
+      "parentExternalKey": "D2",
+      "title": "Run one bounded Ralph-loop experiment",
+      "description": "Why it matters: Lets you discuss persistence based on a measured experiment.\n\nSteps:\n- [ ] Read the official Ralph plugin source, pin the reviewed revision and confirm compatibility.\n- [ ] Use a disposable worktree and fake inputs; target a single pure normalization function with three fixed tests.\n- [ ] Run /ralph-loop with max-iterations 3 and a completion promise tied to the tests.\n- [ ] Set an external 15-minute timer, review cost after every iteration, and cancel on repeated identical failure.\n- [ ] Compare one normal agent attempt against the loop: tests passed, diff, time, cost and failure modes.\n\nDeliverable: Bounded loop trial and ADRs 7, 8, 10\n\nDefinition of done: Loop stops on success, max iterations or manual cancel; no real integrations are available.\n\nEvidence: Prompt; iteration log; diff; cost; ADRs\n\nInterview questions: Ralph loop versus subagents? Why is a completion promise not a test?\n\nExecutive explanation: A bounded retry loop can finish repetitive work, but it must have an objective test and stop conditions.\n\nCommon mistakes and recovery: Mistake: default unlimited iterations or changing tests to force success. Recovery: cap iterations and freeze the test oracle.",
+      "status": "todo",
+      "priority": "medium",
+      "dayNumber": 2,
+      "category": "Persistent loops",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-21T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D2.3",
+        "D2.5"
+      ],
+      "definitionOfDone": "Loop stops on success, max iterations or manual cancel; no real integrations are available.",
+      "requiredEvidence": "Prompt; iteration log; diff; cost; ADRs",
+      "interviewCompetency": "Ralph loop versus subagents? Why is a completion promise not a test?",
+      "resourceLinks": [
+        "https://github.com/anthropics/claude-plugins-official/tree/main/plugins/ralph-loop"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D2.7",
+      "tags": [
+        "ai-builder-prep",
+        "day-2"
+      ]
+    },
+    {
+      "externalKey": "D2.8",
+      "parentExternalKey": "D2",
+      "title": "Test recent releases and defend orchestration",
+      "description": "Why it matters: Proves that you test releases instead of repeating announcements.\n\nSteps:\n- [ ] Follow the four short experiments in 06-Frontier.md, within the shared 60-minute budget.\n- [ ] Capture versions, exact release dates, source links and actual results.\n- [ ] For unavailable API access record blocked, the exact requirement, and the fallback; do not fabricate a run.\n- [ ] Write ADRs 3 and 5 and finish any remaining orchestration rationale.\n- [ ] Give a two-minute explanation of why the production app still uses one extraction agent.\n\nDeliverable: Release experiment log; remaining ADRs\n\nDefinition of done: Each selected release has a dated source and worked/failed/use-it record; unrun experiments are labeled.\n\nEvidence: Versioned experiment logs; ADRs; recording\n\nInterview questions: What changed recently? What did you test yourself?\n\nExecutive explanation: I adopt a new feature only after checking whether it improves a real task.\n\nCommon mistakes and recovery: Mistake: calling roadmap items shipped features. Recovery: require a dated release entry and a reproducible observation.",
+      "status": "todo",
+      "priority": "medium",
+      "dayNumber": 2,
+      "category": "Frontier tracking",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-21T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D2.6",
+        "D2.7"
+      ],
+      "definitionOfDone": "Each selected release has a dated source and worked/failed/use-it record; unrun experiments are labeled.",
+      "requiredEvidence": "Versioned experiment logs; ADRs; recording",
+      "interviewCompetency": "What changed recently? What did you test yourself?",
+      "resourceLinks": [
+        "https://github.com/anthropics/claude-agent-sdk-typescript/releases/tag/v0.3.277"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D2.8",
+      "tags": [
+        "ai-builder-prep",
+        "day-2"
+      ]
+    },
+    {
+      "externalKey": "D3.1",
+      "parentExternalKey": "D3",
+      "title": "Wire the Agent SDK with safe tools and limits",
+      "description": "Why it matters: Distinguishes an application agent from an interactive coding assistant.\n\nSteps:\n- [ ] Install and pin the SDK version reviewed in 06-Frontier.md.\n- [ ] Implement the SDK adapter in 03-Build-Labs.md with tools: [], only read-only memory MCP and structured output.\n- [ ] Set model through config, maxTurns 6, maxBudgetUsd 0.25 and a 60-second AbortController.\n- [ ] Handle non-success result subtypes and exceptions as failed jobs, not empty successes.\n- [ ] Run one live synthetic fixture if an API key is configured; otherwise prove fake mode and label live integration blocked.\n\nDeliverable: agent.ts adapter; configuration validation\n\nDefinition of done: One valid typed output or explicit failure; no shell, write or execution tool is exposed.\n\nEvidence: Package lock; redacted run; turns, tokens and cost\n\nInterview questions: Agent SDK versus Messages SDK? Does allowedTools restrict all tools?\n\nExecutive explanation: The model has a small job, limited tools and a budget, so its behavior is easier to control.\n\nCommon mistakes and recovery: Mistake: assuming allowedTools is an exclusive allowlist. Recovery: remove built-ins with tools: [] and register only safe tools.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 3,
+      "category": "Agent SDK",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-22T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D2.8"
+      ],
+      "definitionOfDone": "One valid typed output or explicit failure; no shell, write or execution tool is exposed.",
+      "requiredEvidence": "Package lock; redacted run; turns, tokens and cost",
+      "interviewCompetency": "Agent SDK versus Messages SDK? Does allowedTools restrict all tools?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/custom-tools"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D3.1",
+      "tags": [
+        "ai-builder-prep",
+        "day-3"
+      ]
+    },
+    {
+      "externalKey": "D3.2",
+      "parentExternalKey": "D3",
+      "title": "Implement extraction, citations and escalation",
+      "description": "Why it matters: Trust depends on showing where claims came from and exposing uncertainty.\n\nSteps:\n- [ ] Extract five claim kinds using the PRD schema.\n- [ ] Validate output with Zod and independently check source IDs and exact quote containment.\n- [ ] Use null for missing owners/deadlines; preserve relative date text and normalize only with a known anchor.\n- [ ] Apply deterministic confidence downgrade rules for missing or conflicting evidence.\n- [ ] Build the daily briefing as a deterministic view of validated claims, with coverage and warning flags.\n\nDeliverable: Extractor, citation validator and briefing command\n\nDefinition of done: Every displayed claim links to a valid source; ambiguous claims enter review.\n\nEvidence: Input/output pairs; invalid-citation test; briefing sample\n\nInterview questions: Structured output versus factual accuracy? Can confidence be treated as probability?\n\nExecutive explanation: Every claim shows its source, and unclear information stays visibly unresolved.\n\nCommon mistakes and recovery: Mistake: another freeform summary invents uncited facts. Recovery: compose the briefing only from validated claims.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 3,
+      "category": "Extraction",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-22T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D3.1",
+        "D1.4"
+      ],
+      "definitionOfDone": "Every displayed claim links to a valid source; ambiguous claims enter review.",
+      "requiredEvidence": "Input/output pairs; invalid-citation test; briefing sample",
+      "interviewCompetency": "Structured output versus factual accuracy? Can confidence be treated as probability?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/structured-outputs"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D3.2",
+      "tags": [
+        "ai-builder-prep",
+        "day-3"
+      ]
+    },
+    {
+      "externalKey": "D3.3",
+      "parentExternalKey": "D3",
+      "title": "Persist jobs, checkpoints and organizational memory",
+      "description": "Why it matters: The system must recover without depending on one model conversation.\n\nSteps:\n- [ ] Apply the migration to a development database and seed one workspace.\n- [ ] Write ingest-and-enqueue in one transaction; claim jobs with leases and bounded retries.\n- [ ] Persist job stages and optionally SDK session ID; never use session history as the business database.\n- [ ] Add approved memory facts with source, version and supersedes relationship.\n- [ ] Kill and restart the worker mid-job; replay safely and show an earlier confirmed preference used in a new briefing.\n\nDeliverable: Database-backed worker and memory lookup\n\nDefinition of done: Restart preserves approved facts and job state; no duplicate committed extraction.\n\nEvidence: Restart trace; database rows; memory citation\n\nInterview questions: Session versus durable business state? Long context versus retrieval?\n\nExecutive explanation: The system remembers verified business facts and can recover when a process stops.\n\nCommon mistakes and recovery: Mistake: saving unreviewed model summaries as truth. Recovery: make memory promotion a reviewed transition with provenance.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 3,
+      "category": "Persistence",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-22T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D3.2",
+        "D1.4"
+      ],
+      "definitionOfDone": "Restart preserves approved facts and job state; no duplicate committed extraction.",
+      "requiredEvidence": "Restart trace; database rows; memory citation",
+      "interviewCompetency": "Session versus durable business state? Long context versus retrieval?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/sessions"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D3.3",
+      "tags": [
+        "ai-builder-prep",
+        "day-3"
+      ]
+    },
+    {
+      "externalKey": "D3.4",
+      "parentExternalKey": "D3",
+      "title": "Build the approval gate and immutable audit events",
+      "description": "Why it matters: Consequential actions must be tied to what a person actually approved.\n\nSteps:\n- [ ] Create proposed actions with canonical payload hashes and versions.\n- [ ] Implement approve/reject authorization in the application, with expiry and optimistic concurrency.\n- [ ] Write approval, job enqueue and audit event in the same transaction.\n- [ ] Reject changed payloads and stale decisions; approval must never be inferred from source text.\n- [ ] Run tests for unauthorized approval, double-click and payload mutation.\n\nDeliverable: Approval commands and audit records\n\nDefinition of done: Only an authorized human can approve the exact action version; mutation invalidates approval.\n\nEvidence: Approval screenshots or CLI transcript; three negative tests\n\nInterview questions: How do you prevent approval time-of-check/time-of-use bugs?\n\nExecutive explanation: Approval applies to the exact action you reviewed, and we record who approved it.\n\nCommon mistakes and recovery: Mistake: allowing the model to set approved=true. Recovery: exclude approval fields from model outputs and enforce server transitions.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 3,
+      "category": "Approval",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-22T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D3.3"
+      ],
+      "definitionOfDone": "Only an authorized human can approve the exact action version; mutation invalidates approval.",
+      "requiredEvidence": "Approval screenshots or CLI transcript; three negative tests",
+      "interviewCompetency": "How do you prevent approval time-of-check/time-of-use bugs?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/permissions"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D3.4",
+      "tags": [
+        "ai-builder-prep",
+        "day-3"
+      ]
+    },
+    {
+      "externalKey": "D3.5",
+      "parentExternalKey": "D3",
+      "title": "Execute safely with retries and idempotency",
+      "description": "Why it matters: This is where an impressive demo becomes a defensible system.\n\nSteps:\n- [ ] Implement only mock create_task with a unique action-version idempotency key.\n- [ ] Recheck approval, payload hash and expiry immediately before execution.\n- [ ] Use 5-second tool timeout, at most 3 attempts and exponential backoff with jitter.\n- [ ] Classify 429/5xx, permanent 4xx and uncertain side-effect outcomes differently.\n- [ ] Test two workers, duplicate job delivery and a crash after the provider applied an action.\n\nDeliverable: Executor and fake provider with fault injection\n\nDefinition of done: Exactly one mock side effect under concurrent retries; uncertain real-provider outcome would require reconciliation.\n\nEvidence: Concurrency test; retry trace; effect count; audit trail\n\nInterview questions: Can you guarantee exactly-once delivery? When should you not retry?\n\nExecutive explanation: We retry temporary failures without creating repeated commitments.\n\nCommon mistakes and recovery: Mistake: replaying all errors blindly. Recovery: distinguish retryable, permanent and unknown-outcome states.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 3,
+      "category": "Reliability",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-22T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D3.4"
+      ],
+      "definitionOfDone": "Exactly one mock side effect under concurrent retries; uncertain real-provider outcome would require reconciliation.",
+      "requiredEvidence": "Concurrency test; retry trace; effect count; audit trail",
+      "interviewCompetency": "Can you guarantee exactly-once delivery? When should you not retry?",
+      "resourceLinks": [
+        "https://www.postgresql.org/docs/current/sql-select.html"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D3.5",
+      "tags": [
+        "ai-builder-prep",
+        "day-3"
+      ]
+    },
+    {
+      "externalKey": "D3.6",
+      "parentExternalKey": "D3",
+      "title": "Run 20 golden and failure evaluation fixtures",
+      "description": "Why it matters: Interview claims need repeatable evidence, including negative cases.\n\nSteps:\n- [ ] Load the 20 fixtures in 07-evaluation-fixtures.json.\n- [ ] Run deterministic unit/integration checks first, then live extraction cases within the approved budget.\n- [ ] Score schema validity, citation validity, precision/recall, abstention, latency and cost separately.\n- [ ] Run adversarial fixtures and assert zero unauthorized or duplicate effects.\n- [ ] Record fixture version, model, prompt hash, commit and failures; fix the highest-impact defect and rerun affected cases.\n\nDeliverable: Evaluation report with denominator and measured results\n\nDefinition of done: All deterministic safety cases pass; extraction meets PRD gates or limitations are clearly documented.\n\nEvidence: Raw redacted results; score table; failing and fixed examples\n\nInterview questions: What is a golden dataset? How do you prevent evaluation overfitting?\n\nExecutive explanation: We test the assistant against examples with known answers and deliberate failures.\n\nCommon mistakes and recovery: Mistake: claiming 100% accuracy from 20 cases. Recovery: state the small sample and separate safety checks from quality metrics.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 3,
+      "category": "Evaluation",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-22T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D3.2",
+        "D3.5"
+      ],
+      "definitionOfDone": "All deterministic safety cases pass; extraction meets PRD gates or limitations are clearly documented.",
+      "requiredEvidence": "Raw redacted results; score table; failing and fixed examples",
+      "interviewCompetency": "What is a golden dataset? How do you prevent evaluation overfitting?",
+      "resourceLinks": [
+        "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D3.6",
+      "tags": [
+        "ai-builder-prep",
+        "day-3"
+      ]
+    },
+    {
+      "externalKey": "D3.7",
+      "parentExternalKey": "D3",
+      "title": "Complete the user workflow and handoff path",
+      "description": "Why it matters: Another person must be able to operate the software without you narrating every step.\n\nSteps:\n- [ ] Implement the documented CLI commands for ingest, briefing, sources, approvals, audit and retry.\n- [ ] Add clear help, actionable errors and a sample-data reset limited to the demo workspace.\n- [ ] Expose authenticated API routes only if deploying the service; keep a public health response nonsensitive.\n- [ ] Spend at most 20 minutes on a read-only briefing HTML view if the CLI gate already passes.\n- [ ] Ask a second person to follow the README, or perform a clean-room self-test from a new folder.\n\nDeliverable: Complete CLI workflow; optional briefing view\n\nDefinition of done: A fresh operator can ingest fixtures, inspect citations and approve one mock action from written steps.\n\nEvidence: Clean-room transcript; usability notes; corrected README\n\nInterview questions: How do you package software for someone else? What do you cut to ship?\n\nExecutive explanation: A useful handover means the next person can run and troubleshoot the workflow.\n\nCommon mistakes and recovery: Mistake: adding Next.js before reliable execution works. Recovery: ship the documented CLI first and label the UI as optional.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 3,
+      "category": "Interface",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-22T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D3.3",
+        "D3.5",
+        "D3.6"
+      ],
+      "definitionOfDone": "A fresh operator can ingest fixtures, inspect citations and approve one mock action from written steps.",
+      "requiredEvidence": "Clean-room transcript; usability notes; corrected README",
+      "interviewCompetency": "How do you package software for someone else? What do you cut to ship?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/hosting"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D3.7",
+      "tags": [
+        "ai-builder-prep",
+        "day-3"
+      ]
+    },
+    {
+      "externalKey": "D3.8",
+      "parentExternalKey": "D3",
+      "title": "Run the end-to-end build gate",
+      "description": "Why it matters: Checks that the components work together, not just in isolation.\n\nSteps:\n- [ ] Run ingest to briefing to approval to execution to audit.\n- [ ] Replay the same event and approved action; confirm stable counts.\n- [ ] Restart the worker and repeat the read path.\n- [ ] Record a three-minute walkthrough with one failure demonstration.\n- [ ] Freeze scope and write the remaining release risks.\n\nDeliverable: Release-candidate commit and evidence index\n\nDefinition of done: Happy path plus duplicate, unauthorized and recovery paths are demonstrable.\n\nEvidence: Commit; recording; test report; limitations\n\nInterview questions: Where can partial failure occur? What is your release blocker?\n\nExecutive explanation: The core workflow works end to end, including the cases where something goes wrong.\n\nCommon mistakes and recovery: Mistake: demonstrating only the happy path. Recovery: rehearse a duplicate request and failed tool before the final demo.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 3,
+      "category": "Review",
+      "estimatedMinutes": 30,
+      "dueDate": "2026-09-22T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D3.6",
+        "D3.7"
+      ],
+      "definitionOfDone": "Happy path plus duplicate, unauthorized and recovery paths are demonstrable.",
+      "requiredEvidence": "Commit; recording; test report; limitations",
+      "interviewCompetency": "Where can partial failure occur? What is your release blocker?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/cost-tracking"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D3.8",
+      "tags": [
+        "ai-builder-prep",
+        "day-3"
+      ]
+    },
+    {
+      "externalKey": "D4.1",
+      "parentExternalKey": "D4",
+      "title": "Audit provenance, permissions and dependencies",
+      "description": "Why it matters: Shared infrastructure needs an accountable supply chain and limited access.\n\nSteps:\n- [ ] Review MCP server, plugin and skill source origins, pinned versions, maintainers and install scripts.\n- [ ] Compare tool descriptions and capabilities against the reviewed baseline to detect rug pulls.\n- [ ] Inspect npm dependency changes and advisory findings; document triage rather than counting alerts.\n- [ ] Map hypothetical Gmail/Slack/Calendar scopes to exact read operations; keep real OAuth outside the sprint.\n- [ ] Repeat injection, role-boundary and redacted-logging tests.\n\nDeliverable: Security review with evidence and residual risks\n\nDefinition of done: No unresolved critical bypass; every external component has a reviewed source and pinned revision.\n\nEvidence: Provenance inventory; lockfile; scope matrix; negative tests\n\nInterview questions: How do you assess a third-party MCP? OAuth versus OIDC?\n\nExecutive explanation: We check who built each extension, what it can access, and what changed before adopting it.\n\nCommon mistakes and recovery: Mistake: trusting an official-looking name or readOnlyHint. Recovery: verify publisher and enforce permissions independently.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 4,
+      "category": "Security",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-23T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D3.8"
+      ],
+      "definitionOfDone": "No unresolved critical bypass; every external component has a reviewed source and pinned revision.",
+      "requiredEvidence": "Provenance inventory; lockfile; scope matrix; negative tests",
+      "interviewCompetency": "How do you assess a third-party MCP? OAuth versus OIDC?",
+      "resourceLinks": [
+        "https://modelcontextprotocol.io/docs/2026-07-28/tutorials/security/security_best_practices"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D4.1",
+      "tags": [
+        "ai-builder-prep",
+        "day-4"
+      ]
+    },
+    {
+      "externalKey": "D4.2",
+      "parentExternalKey": "D4",
+      "title": "Package the application and operator guide",
+      "description": "Why it matters: Your trial is stronger when another person can install it consistently.\n\nSteps:\n- [ ] Complete README prerequisites, install, configuration names, migration, seed and demo commands.\n- [ ] Create a non-root Docker image and docker-compose configuration where Docker is available.\n- [ ] Keep API keys out of image layers and logs; document injection through runtime configuration.\n- [ ] Write troubleshooting entries for auth, DB, quota, missing model, stuck job and citation failure.\n- [ ] Run install and fake-mode demo from a fresh directory.\n\nDeliverable: README, Dockerfile, .env.example and troubleshooting guide\n\nDefinition of done: Instructions work without undocumented steps; fake mode does not require an API key.\n\nEvidence: Clean install transcript; image tag; operator checklist\n\nInterview questions: What makes a good handoff? How do you separate demo and production settings?\n\nExecutive explanation: The package includes a repeatable install path and clear answers for common problems.\n\nCommon mistakes and recovery: Mistake: relying on global tools or a personal home directory. Recovery: declare versions and use project scripts.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 4,
+      "category": "Packaging",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-23T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D4.1"
+      ],
+      "definitionOfDone": "Instructions work without undocumented steps; fake mode does not require an API key.",
+      "requiredEvidence": "Clean install transcript; image tag; operator checklist",
+      "interviewCompetency": "What makes a good handoff? How do you separate demo and production settings?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/secure-deployment"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D4.2",
+      "tags": [
+        "ai-builder-prep",
+        "day-4"
+      ]
+    },
+    {
+      "externalKey": "D4.3",
+      "parentExternalKey": "D4",
+      "title": "Deploy a private demonstration service",
+      "description": "Why it matters: Shows you understand runtime constraints and can defend the hosting choice.\n\nSteps:\n- [ ] Use the release checklist in 08-Operations-Demo.md to deploy the pinned container on Railway if account and budget allow.\n- [ ] Configure database and API key via host secrets, with separate operator and approver credentials.\n- [ ] Bind the server to the host port and all interfaces; keep model execution in the worker.\n- [ ] Run migration, seed synthetic data and verify health, authentication and one end-to-end run.\n- [ ] Record actual plan/cost constraints; if paid hosting is unavailable, validate the local container and mark cloud deployment blocked.\n\nDeliverable: Private deployment URL or explicitly labeled local release\n\nDefinition of done: No anonymous access to briefing or mutation routes; exact release commit and health evidence recorded.\n\nEvidence: Deployment log; private URL; smoke test; cost estimate\n\nInterview questions: Why Railway? What is a Vercel function runtime limitation?\n\nExecutive explanation: The demo is deployed where its worker can run reliably, with access limited to authorized users.\n\nCommon mistakes and recovery: Mistake: assuming free hosting or exposing an unauthenticated dashboard. Recovery: verify current plan and keep local delivery if access is unavailable.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 4,
+      "category": "Deployment",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-23T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D4.2"
+      ],
+      "definitionOfDone": "No anonymous access to briefing or mutation routes; exact release commit and health evidence recorded.",
+      "requiredEvidence": "Deployment log; private URL; smoke test; cost estimate",
+      "interviewCompetency": "Why Railway? What is a Vercel function runtime limitation?",
+      "resourceLinks": [
+        "https://docs.railway.com/pricing/plans"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D4.3",
+      "tags": [
+        "ai-builder-prep",
+        "day-4"
+      ]
+    },
+    {
+      "externalKey": "D4.4",
+      "parentExternalKey": "D4",
+      "title": "Rehearse monitoring, recovery and rollback",
+      "description": "Why it matters: Connects your production-support experience to application ownership.\n\nSteps:\n- [ ] Track queue age, failures, denied actions, latency and cost without message bodies in normal logs.\n- [ ] Simulate model outage and stale worker lease; record incident timeline and recovery.\n- [ ] Export a demo database backup and restore it into a separate empty database.\n- [ ] Redeploy the previous application image against a compatible schema; document forward-fix for destructive migrations.\n- [ ] Write owner, severity, communication cadence, RPO/RTO targets and measured drill results.\n\nDeliverable: Operations runbook and recovery drill\n\nDefinition of done: One restore and one rollback path demonstrated, or precisely labeled blocked with reason.\n\nEvidence: Sanitized incident timeline; restore counts; rollback smoke test\n\nInterview questions: Health check versus monitoring? What would you do during a production incident?\n\nExecutive explanation: We know how to notice a failure, contain it and restore service without repeating actions.\n\nCommon mistakes and recovery: Mistake: having a backup without testing restore. Recovery: restore to a separate database and compare known records.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 4,
+      "category": "Operations",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-23T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D4.3"
+      ],
+      "definitionOfDone": "One restore and one rollback path demonstrated, or precisely labeled blocked with reason.",
+      "requiredEvidence": "Sanitized incident timeline; restore counts; rollback smoke test",
+      "interviewCompetency": "Health check versus monitoring? What would you do during a production incident?",
+      "resourceLinks": [
+        "https://docs.railway.com/deployments/healthchecks"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D4.4",
+      "tags": [
+        "ai-builder-prep",
+        "day-4"
+      ]
+    },
+    {
+      "externalKey": "D4.5",
+      "parentExternalKey": "D4",
+      "title": "Record the five-minute demo and architecture tour",
+      "description": "Why it matters: An executive needs to understand the benefit and the control model quickly.\n\nSteps:\n- [ ] Follow the minute-by-minute script in 08-Operations-Demo.md.\n- [ ] Show one briefing with citations, an ambiguous claim, approval and the resulting audit event.\n- [ ] Replay a duplicate request and show no extra side effect.\n- [ ] Explain the architecture with the diagram and one ADR.\n- [ ] Re-record once after removing jargon and disclose mock connectors and remaining limitations.\n\nDeliverable: Five-minute demo and one-page architecture explanation\n\nDefinition of done: Demo stays within five minutes and includes evidence, control and failure behavior.\n\nEvidence: Video; demo data; architecture slide or diagram\n\nInterview questions: What would you show a CEO first? What is still missing for production?\n\nExecutive explanation: Here is the decision support, its evidence, and the point where you retain control.\n\nCommon mistakes and recovery: Mistake: spending the demo on installation or tool lists. Recovery: pre-seed data and lead with the briefing.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 4,
+      "category": "Demonstration",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-23T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D4.4"
+      ],
+      "definitionOfDone": "Demo stays within five minutes and includes evidence, control and failure behavior.",
+      "requiredEvidence": "Video; demo data; architecture slide or diagram",
+      "interviewCompetency": "What would you show a CEO first? What is still missing for production?",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/overview"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D4.5",
+      "tags": [
+        "ai-builder-prep",
+        "day-4"
+      ]
+    },
+    {
+      "externalKey": "D4.6",
+      "parentExternalKey": "D4",
+      "title": "Rehearse six truthful STAR stories",
+      "description": "Why it matters: Makes your infrastructure and automation experience relevant without inventing outcomes.\n\nSteps:\n- [ ] Use the six worksheets in 05-Interview.md.\n- [ ] Fill missing DXC context, your exact responsibility, actions, outcomes and evidence.\n- [ ] Keep unverified metrics out; distinguish portfolio claims from independently measured results.\n- [ ] Record each answer in 90 seconds, emphasizing your personal decision and lesson.\n- [ ] Ask a reviewer to probe what you personally did and what you would change.\n\nDeliverable: Six STAR story cards with fact gaps resolved or marked\n\nDefinition of done: Each story has a true specific example, personal action, outcome and lesson.\n\nEvidence: Story cards; source notes; recordings\n\nInterview questions: Tell me about an incident, unclear requirement or risky change.\n\nExecutive explanation: My experience taught me to make changes carefully, explain risk and support the person using the system.\n\nCommon mistakes and recovery: Mistake: claiming team outcomes as individual results. Recovery: distinguish “I did” from “the team achieved.”",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 4,
+      "category": "Behavioral",
+      "estimatedMinutes": 60,
+      "dueDate": "2026-09-23T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D4.5"
+      ],
+      "definitionOfDone": "Each story has a true specific example, personal action, outcome and lesson.",
+      "requiredEvidence": "Story cards; source notes; recordings",
+      "interviewCompetency": "Tell me about an incident, unclear requirement or risky change.",
+      "resourceLinks": [
+        "https://jmvautomates.tech"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D4.6",
+      "tags": [
+        "ai-builder-prep",
+        "day-4"
+      ]
+    },
+    {
+      "externalKey": "D4.7",
+      "parentExternalKey": "D4",
+      "title": "Run technical and executive mock interviews",
+      "description": "Why it matters: Tests explanation under pressure and reveals the last high-value gaps.\n\nSteps:\n- [ ] Run a 35-minute technical interview using 05-Interview.md without opening notes.\n- [ ] Run a 20-minute CEO conversation about vague priorities, cost and trust.\n- [ ] Score accuracy, trade-offs, evidence, clarity and ownership from 0 to 2 each.\n- [ ] Spend 15 minutes repairing the two weakest answers and 5 minutes repeating them.\n- [ ] Prepare an honest answer about what you built personally, what AI helped with and what is still a prototype.\n\nDeliverable: Mock interview scores and corrected answers\n\nDefinition of done: At least 8/10 on the final explanation rubric; no invented claims or hidden limitations.\n\nEvidence: Recording; scored rubric; before/after answers\n\nInterview questions: System design, debugging, prioritization, feedback, independence and support questions.\n\nExecutive explanation: I can explain the value, defend the choices and be clear about the remaining risks.\n\nCommon mistakes and recovery: Mistake: memorizing product terminology. Recovery: explain one observed failure and the code-level control that handled it.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 4,
+      "category": "Interview",
+      "estimatedMinutes": 75,
+      "dueDate": "2026-09-23T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D4.5",
+        "D4.6"
+      ],
+      "definitionOfDone": "At least 8/10 on the final explanation rubric; no invented claims or hidden limitations.",
+      "requiredEvidence": "Recording; scored rubric; before/after answers",
+      "interviewCompetency": "System design, debugging, prioritization, feedback, independence and support questions.",
+      "resourceLinks": [
+        "https://code.claude.com/docs/en/agent-sdk/permissions"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D4.7",
+      "tags": [
+        "ai-builder-prep",
+        "day-4"
+      ]
+    },
+    {
+      "externalKey": "D4.8",
+      "parentExternalKey": "D4",
+      "title": "Prepare the trial handoff and final readiness review",
+      "description": "Why it matters: Shows an executive how you will deliver independently during a real trial.\n\nSteps:\n- [ ] Prepare the discovery-to-demo trial plan in 08-Operations-Demo.md.\n- [ ] Build an evidence index linking PRD, commits, tests, ADRs, demo and runbook.\n- [ ] List top three production gaps, proposed next experiments and build-versus-buy costs.\n- [ ] Rehearse a concise written status update and a response to critical feedback.\n- [ ] Review all sprint checkboxes honestly; mark only completed work done in the tracker.\n\nDeliverable: Trial execution plan and interview evidence pack\n\nDefinition of done: Evidence opens correctly; limitations and next steps are explicit; no unperformed work marked complete.\n\nEvidence: Handoff index; trial plan; final checklist\n\nInterview questions: How do you work independently? What will you do in your first trial day?\n\nExecutive explanation: You will see the plan, the evidence of progress and any decision that needs your input.\n\nCommon mistakes and recovery: Mistake: a vague “production ready” claim. Recovery: name tested behavior, workload and specific remaining gaps.",
+      "status": "todo",
+      "priority": "high",
+      "dayNumber": 4,
+      "category": "Trial strategy",
+      "estimatedMinutes": 45,
+      "dueDate": "2026-09-23T23:59:59+08:00",
+      "dependencyExternalKeys": [
+        "D4.7"
+      ],
+      "definitionOfDone": "Evidence opens correctly; limitations and next steps are explicit; no unperformed work marked complete.",
+      "requiredEvidence": "Handoff index; trial plan; final checklist",
+      "interviewCompetency": "How do you work independently? What will you do in your first trial day?",
+      "resourceLinks": [
+        "https://jmvautomates.tech"
+      ],
+      "notes": "Fictional/synthetic executive data only. Full instructions: 01-Sprint-Workbook.md, task D4.8",
+      "tags": [
+        "ai-builder-prep",
+        "day-4"
+      ]
+    }
+  ]
+}

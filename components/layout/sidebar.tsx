@@ -7,6 +7,7 @@ import {
   Clock3,
   LayoutDashboard,
   ListTodo,
+  FolderKanban,
   Settings,
 } from "lucide-react";
 import { Brand } from "@/components/ui/brand";
@@ -18,6 +19,7 @@ const items: Array<{
   icon: typeof LayoutDashboard;
 }> = [
   { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { id: "projects", label: "Projects", icon: FolderKanban },
   { id: "all", label: "All Tasks", icon: ListTodo },
   { id: "today", label: "Today", icon: CalendarDays },
   { id: "upcoming", label: "Upcoming", icon: Clock3 },

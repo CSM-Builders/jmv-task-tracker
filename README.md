@@ -2,6 +2,8 @@
 
 JMV Task Tracker is a responsive personal productivity dashboard built with the Next.js App Router. It supports task creation, editing, deletion with confirmation, status changes, priorities, due dates, search, filtering, sorting, progress statistics, and dark/light themes.
 
+The sprint-support release adds projects, one-level parent/subtask planning, dependency-aware blocking, estimates, evidence notes and links, project-timezone dates, and a safe dry-run-first JSON importer. Project progress counts leaf work only, so parent milestones never inflate completion or estimate totals.
+
 The application is immediately usable in **Demo Mode** without an account. When Supabase is configured, it adds email/password authentication, private PostgreSQL storage, server-side validation, and Row Level Security (RLS) so each person can access only their own tasks.
 
 ## Live application
@@ -116,6 +118,7 @@ The UI depends on a `TaskRepository` interface. Demo Mode selects `LocalTaskRepo
    ```
 
 6. In Supabase, open **SQL Editor**, create a new query, paste the full contents of `supabase/migrations/001_create_tasks.sql`, and run it once.
+   - Existing installations must then apply `supabase/migrations/002_add_projects_hierarchy_and_import.sql` once. Back up and validate in a test project first; never rerun migration 001 as a reset.
 7. Open **Authentication → Providers → Email** and keep Email/Password enabled.
 8. For local development, add `http://localhost:3000` as the Site URL or an allowed redirect URL under **Authentication → URL Configuration**.
 9. Restart `npm run dev`. The root route now redirects signed-out visitors to `/sign-in`.
@@ -143,7 +146,9 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-The Playwright test intentionally runs without Supabase credentials. It clears local storage, creates a task, edits it, completes it, filters it, and deletes it on desktop and a Pixel-sized mobile viewport. Authenticated browser tests can be added later with a dedicated test project and credentials stored only in local/CI secrets.
+The default Playwright run sets `NEXT_PUBLIC_FORCE_DEMO_MODE=1` for the test server, so a developer's `.env.local` cannot accidentally redirect the isolated demo suite into a live Supabase account. It clears local storage, creates a task, edits it, completes it, filters it, and deletes it on desktop and a Pixel-sized mobile viewport.
+
+An opt-in authenticated test in `tests/e2e/supabase-sprint.spec.ts` validates the complete 36-record sprint manifest against a disposable development Supabase project. It is skipped unless `RUN_SUPABASE_INTEGRATION=1` and dedicated test-user credentials are supplied. See `docs/SPRINT_SUPPORT.md` for the exact migration and execution steps. Never point this write test at production.
 
 ## Deploy to Vercel Hobby
 
@@ -192,3 +197,7 @@ Free projects have quotas, inactivity policies, and platform limits that can cha
 ## Suggested next improvements
 
 The strongest next feature is **recurring tasks with a focused activity history**. It extends personal planning without turning the app into a team product, and it creates a useful audit trail for portfolio demonstrations.
+
+## Sprint import and rollout
+
+See [`docs/SPRINT_SUPPORT.md`](docs/SPRINT_SUPPORT.md) for the additive migration order, rollback strategy, authenticated API/WebMCP contract, dependency rules, and dry-run-first import guide.

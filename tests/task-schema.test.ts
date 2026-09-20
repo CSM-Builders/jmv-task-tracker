@@ -2,8 +2,24 @@ import { describe, expect, it } from "vitest";
 import { formValuesToTaskInput, taskFormSchema } from "@/lib/validation/task";
 
 describe("task validation", () => {
+  const defaults = {
+    projectId: "",
+    parentTaskId: "",
+    externalKey: "",
+    category: "",
+    estimatedMinutes: "",
+    dayNumber: "",
+    definitionOfDone: "",
+    requiredEvidence: "",
+    interviewCompetency: "",
+    resourceLinks: "",
+    notes: "",
+    tags: "",
+    dependencyIds: [],
+  };
   it("trims required text and rejects a blank title", () => {
     const invalid = taskFormSchema.safeParse({
+      ...defaults,
       title: "   ",
       description: "",
       status: "todo",
@@ -13,6 +29,7 @@ describe("task validation", () => {
     expect(invalid.success).toBe(false);
 
     const valid = taskFormSchema.parse({
+      ...defaults,
       title: "  Ship review  ",
       description: "  Verify alerts  ",
       status: "todo",
@@ -25,6 +42,7 @@ describe("task validation", () => {
 
   it("normalizes optional fields for persistence", () => {
     const value = formValuesToTaskInput({
+      ...defaults,
       title: "Write notes",
       description: "",
       status: "in_progress",

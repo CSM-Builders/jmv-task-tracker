@@ -2,7 +2,7 @@ import {
   TaskRepositoryError,
   type TaskRepository,
 } from "@/lib/tasks/repository";
-import type { Task, TaskInput } from "@/types/task";
+import type { Task, TaskInput, TaskListResult } from "@/types/task";
 
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, {
@@ -21,8 +21,17 @@ async function request<T>(url: string, init?: RequestInit): Promise<T> {
 }
 
 export class RemoteTaskRepository implements TaskRepository {
-  list() {
-    return request<Task[]>("/api/tasks");
+  async list() {
+    const tasks: Task[] = [];
+    let cursor: string | null = null;
+    do {
+      const page: TaskListResult = await request<TaskListResult>(
+        `/api/tasks?limit=100${cursor ? `&cursor=${encodeURIComponent(cursor)}` : ""}`,
+      );
+      tasks.push(...page.tasks);
+      cursor = page.nextCursor;
+    } while (cursor);
+    return tasks;
   }
 
   create(input: TaskInput) {
