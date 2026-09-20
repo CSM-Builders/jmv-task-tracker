@@ -12,6 +12,8 @@ describe("TaskCard", () => {
     render(
       <TaskCard
         task={task}
+        tasks={[task]}
+        projects={[]}
         busy={false}
         onEdit={vi.fn()}
         onDelete={vi.fn()}

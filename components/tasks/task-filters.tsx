@@ -1,14 +1,23 @@
 import { Search, SlidersHorizontal } from "lucide-react";
-import type { TaskPriority, TaskSort, TaskStatus } from "@/types/task";
+import type { Project, TaskPriority, TaskSort, TaskStatus } from "@/types/task";
 
 interface TaskFiltersProps {
   query: string;
   status: "all" | TaskStatus;
   priority: "all" | TaskPriority;
+  projectId: "all" | "none" | string;
+  dayNumber: "all" | number;
+  category: "all" | string;
+  projects: Project[];
+  days: number[];
+  categories: string[];
   sort: TaskSort;
   onQuery(value: string): void;
   onStatus(value: "all" | TaskStatus): void;
   onPriority(value: "all" | TaskPriority): void;
+  onProject(value: "all" | "none" | string): void;
+  onDay(value: "all" | number): void;
+  onCategory(value: "all" | string): void;
   onSort(value: TaskSort): void;
 }
 
@@ -16,10 +25,19 @@ export function TaskFilters({
   query,
   status,
   priority,
+  projectId,
+  dayNumber,
+  category,
+  projects,
+  days,
+  categories,
   sort,
   onQuery,
   onStatus,
   onPriority,
+  onProject,
+  onDay,
+  onCategory,
   onSort,
 }: TaskFiltersProps) {
   return (
@@ -45,7 +63,62 @@ export function TaskFilters({
       <div className="flex items-center gap-2 text-sm font-bold text-[var(--muted-foreground)]">
         <SlidersHorizontal size={17} aria-hidden="true" /> Refine
       </div>
-      <div className="grid flex-1 grid-cols-1 gap-2 sm:grid-cols-3">
+      <div className="grid flex-1 grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-6">
+        <label>
+          <span className="sr-only">Filter by project</span>
+          <select
+            aria-label="Filter by project"
+            className="control w-full px-3"
+            value={projectId}
+            onChange={(event) => onProject(event.target.value)}
+          >
+            <option value="all">All projects</option>
+            <option value="none">No project</option>
+            {projects.map((project) => (
+              <option key={project.id} value={project.id}>
+                {project.name}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span className="sr-only">Filter by day</span>
+          <select
+            aria-label="Filter by day"
+            className="control w-full px-3"
+            value={dayNumber}
+            onChange={(event) =>
+              onDay(
+                event.target.value === "all"
+                  ? "all"
+                  : Number(event.target.value),
+              )
+            }
+          >
+            <option value="all">All days</option>
+            {days.map((day) => (
+              <option key={day} value={day}>
+                Day {day}
+              </option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span className="sr-only">Filter by category</span>
+          <select
+            aria-label="Filter by category"
+            className="control w-full px-3"
+            value={category}
+            onChange={(event) => onCategory(event.target.value)}
+          >
+            <option value="all">All categories</option>
+            {categories.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </label>
         <label>
           <span className="sr-only">Filter by status</span>
           <select

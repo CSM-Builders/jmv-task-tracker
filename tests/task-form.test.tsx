@@ -8,7 +8,14 @@ describe("TaskForm", () => {
     const user = userEvent.setup();
     const submit = vi.fn().mockResolvedValue(undefined);
     render(
-      <TaskForm task={null} busy={false} onClose={vi.fn()} onSubmit={submit} />,
+      <TaskForm
+        task={null}
+        tasks={[]}
+        projects={[]}
+        busy={false}
+        onClose={vi.fn()}
+        onSubmit={submit}
+      />,
     );
 
     await user.click(screen.getByRole("button", { name: "Create task" }));

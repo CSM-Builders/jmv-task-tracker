@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipboardList, LoaderCircle, Plus, X } from "lucide-react";
+import { ClipboardList, Plus, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { StatsGrid } from "@/components/dashboard/stats-grid";
 import { AppHeader } from "@/components/layout/app-header";
@@ -8,14 +8,23 @@ import { mobileNavItems, Sidebar } from "@/components/layout/sidebar";
 import { TaskCard } from "@/components/tasks/task-card";
 import { TaskFilters } from "@/components/tasks/task-filters";
 import { TaskForm } from "@/components/tasks/task-form";
+import { ProjectPanel } from "@/components/projects/project-panel";
 import { ConfirmDialog } from "@/components/ui/confirm-dialog";
+import {
+  ResourceState,
+  type LoadFailure,
+} from "@/components/ui/resource-state";
 import { useTaskWebMcp } from "@/hooks/use-task-webmcp";
 import { LocalTaskRepository } from "@/lib/tasks/local-repository";
 import { RemoteTaskRepository } from "@/lib/tasks/remote-repository";
+import { LocalProjectRepository } from "@/lib/projects/local-repository";
+import { RemoteProjectRepository } from "@/lib/projects/remote-repository";
 import { filterTasks, sortTasks, taskStats } from "@/lib/utils/tasks";
 import type {
   Task,
   TaskInput,
+  Project,
+  ProjectInput,
   TaskPriority,
   TaskSort,
   TaskStatus,
@@ -30,6 +39,12 @@ const viewTitles: Record<
     title: "Execution dashboard",
     eyebrow: "COMMAND CENTER",
     description: "See what matters, move work forward, and close the loop.",
+  },
+  projects: {
+    title: "Projects and sprints",
+    eyebrow: "DELIVERY WORKSPACES",
+    description:
+      "Track project dates, leaf-task progress, evidence, and day-by-day execution.",
   },
   all: {
     title: "All tasks",
@@ -63,20 +78,59 @@ interface DashboardShellProps {
   userEmail: string;
 }
 
+interface ResourceLoadState {
+  status: "loading" | "ready" | "error";
+  failure: LoadFailure | null;
+}
+
+function loadFailure(caught: unknown, fallback: string): LoadFailure {
+  if (!(caught instanceof Error)) return { message: fallback };
+  const metadata = caught as Error & {
+    code?: string;
+    requestId?: string;
+    detail?: string;
+  };
+  return {
+    message: caught.message || fallback,
+    code: metadata.code,
+    requestId: metadata.requestId,
+    detail: metadata.detail,
+  };
+}
+
 export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
   const repository = useMemo(
     () =>
       mode === "demo" ? new LocalTaskRepository() : new RemoteTaskRepository(),
     [mode],
   );
+  const projectRepository = useMemo(
+    () =>
+      mode === "demo"
+        ? new LocalProjectRepository()
+        : new RemoteProjectRepository(),
+    [mode],
+  );
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [taskLoad, setTaskLoad] = useState<ResourceLoadState>({
+    status: "loading",
+    failure: null,
+  });
+  const [projectLoad, setProjectLoad] = useState<ResourceLoadState>({
+    status: "loading",
+    failure: null,
+  });
+  const [actionError, setActionError] = useState<string | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [view, setView] = useState<TaskView>("dashboard");
   const [query, setQuery] = useState("");
   const [status, setStatus] = useState<"all" | TaskStatus>("all");
   const [priority, setPriority] = useState<"all" | TaskPriority>("all");
+  const [projectId, setProjectId] = useState<"all" | "none" | string>("all");
+  const [dayNumber, setDayNumber] = useState<"all" | number>("all");
+  const [category, setCategory] = useState<"all" | string>("all");
+  const [selectedProjectId, setSelectedProjectId] = useState("");
   const [sort, setSort] = useState<TaskSort>("createdAt");
   const [collapsed, setCollapsed] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
@@ -93,63 +147,170 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
     );
   }, []);
 
-  const loadTasks = useCallback(async () => {
-    setLoading(true);
-    setError(null);
+  const loadTaskData = useCallback(async () => {
+    setTaskLoad({ status: "loading", failure: null });
     try {
-      setTasks(await repository.list());
+      const loadedTasks = await repository.list();
+      setTasks(loadedTasks);
+      setTaskLoad({ status: "ready", failure: null });
     } catch (caught) {
-      setError(
-        caught instanceof Error ? caught.message : "Tasks could not be loaded.",
-      );
-    } finally {
-      setLoading(false);
+      setTaskLoad({
+        status: "error",
+        failure: loadFailure(caught, "Tasks could not be loaded."),
+      });
     }
   }, [repository]);
 
+  const loadProjectData = useCallback(async () => {
+    setProjectLoad({ status: "loading", failure: null });
+    try {
+      const loadedProjects = await projectRepository.list();
+      setProjects(loadedProjects);
+      setSelectedProjectId((current) => current || loadedProjects[0]?.id || "");
+      setProjectLoad({ status: "ready", failure: null });
+    } catch (caught) {
+      setProjectLoad({
+        status: "error",
+        failure: loadFailure(caught, "Projects could not be loaded."),
+      });
+    }
+  }, [projectRepository]);
+
+  const loadWorkspace = useCallback(
+    async () => Promise.all([loadTaskData(), loadProjectData()]).then(() => {}),
+    [loadProjectData, loadTaskData],
+  );
+
   useEffect(() => {
     let active = true;
-    repository
-      .list()
-      .then((loadedTasks) => {
-        if (active) setTasks(loadedTasks);
-      })
-      .catch((caught: unknown) => {
-        if (active) {
-          setError(
-            caught instanceof Error
-              ? caught.message
-              : "Tasks could not be loaded.",
-          );
+    void Promise.allSettled([repository.list(), projectRepository.list()]).then(
+      ([taskResult, projectResult]) => {
+        if (!active) return;
+        if (taskResult.status === "fulfilled") {
+          setTasks(taskResult.value);
+          setTaskLoad({ status: "ready", failure: null });
+        } else {
+          setTaskLoad({
+            status: "error",
+            failure: loadFailure(
+              taskResult.reason,
+              "Tasks could not be loaded.",
+            ),
+          });
         }
-      })
-      .finally(() => {
-        if (active) setLoading(false);
-      });
+
+        if (projectResult.status === "fulfilled") {
+          setProjects(projectResult.value);
+          setSelectedProjectId((current) =>
+            current ? current : (projectResult.value[0]?.id ?? ""),
+          );
+          setProjectLoad({ status: "ready", failure: null });
+        } else {
+          setProjectLoad({
+            status: "error",
+            failure: loadFailure(
+              projectResult.reason,
+              "Projects could not be loaded.",
+            ),
+          });
+        }
+      },
+    );
     return () => {
       active = false;
     };
-  }, [repository]);
+  }, [projectRepository, repository]);
 
   const createTask = useCallback(
     async (input: TaskInput) => {
       const created = await repository.create(input);
-      setTasks((current) => [created, ...current]);
+      setTasks((current) => [
+        created,
+        ...current.map((task) =>
+          task.id === created.parentTaskId
+            ? {
+                ...task,
+                estimatedMinutes: null,
+                ...(created.status !== "completed" &&
+                task.status === "completed"
+                  ? {
+                      status: "todo" as const,
+                      completedAt: null,
+                      updatedAt: created.updatedAt,
+                    }
+                  : {}),
+              }
+            : task,
+        ),
+      ]);
       notify("Task created.");
       return created;
     },
     [notify, repository],
   );
 
-  useTaskWebMcp(tasks, createTask);
+  useTaskWebMcp(tasks, projects, createTask, mode);
 
   const visibleTasks = useMemo(
     () =>
-      sortTasks(filterTasks(tasks, { query, status, priority, view }), sort),
-    [priority, query, sort, status, tasks, view],
+      sortTasks(
+        filterTasks(tasks, {
+          query,
+          status,
+          priority,
+          projectId,
+          dayNumber,
+          category,
+          view,
+          projects,
+        }),
+        sort,
+      ),
+    [
+      category,
+      dayNumber,
+      priority,
+      projectId,
+      projects,
+      query,
+      sort,
+      status,
+      tasks,
+      view,
+    ],
+  );
+  const days = useMemo(
+    () =>
+      [
+        ...new Set(
+          tasks
+            .map((task) => task.dayNumber)
+            .filter((day): day is number => day !== null),
+        ),
+      ].sort((a, b) => a - b),
+    [tasks],
+  );
+  const categories = useMemo(
+    () =>
+      [
+        ...new Set(
+          tasks
+            .map((task) => task.category)
+            .filter((item): item is string => Boolean(item)),
+        ),
+      ].sort(),
+    [tasks],
   );
   const stats = useMemo(() => taskStats(tasks), [tasks]);
   const heading = viewTitles[view];
+  const workspaceLoading =
+    taskLoad.status === "loading" || projectLoad.status === "loading";
+  const workspaceFailure =
+    taskLoad.status === "error"
+      ? taskLoad.failure
+      : projectLoad.status === "error"
+        ? projectLoad.failure
+        : null;
 
   function chooseView(next: TaskView) {
     setView(next);
@@ -159,12 +320,26 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
 
   async function submitTask(input: TaskInput) {
     setSaving(true);
-    setError(null);
+    setActionError(null);
     try {
       if (editor) {
         const updated = await repository.update(editor.id, input);
         setTasks((current) =>
-          current.map((task) => (task.id === updated.id ? updated : task)),
+          current.map((task) => {
+            if (task.id === updated.id) return updated;
+            if (
+              task.id === updated.parentTaskId &&
+              updated.status !== "completed" &&
+              task.status === "completed"
+            )
+              return {
+                ...task,
+                status: "todo",
+                completedAt: null,
+                updatedAt: updated.updatedAt,
+              };
+            return task;
+          }),
         );
         notify("Task updated.");
       } else {
@@ -172,7 +347,7 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
       }
       setEditor(undefined);
     } catch (caught) {
-      setError(
+      setActionError(
         caught instanceof Error
           ? caught.message
           : "The task could not be saved.",
@@ -182,20 +357,51 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
     }
   }
 
+  async function createProject(input: ProjectInput) {
+    setActionError(null);
+    try {
+      const created = await projectRepository.create(input);
+      setProjects((current) => [...current, created]);
+      setSelectedProjectId(created.id);
+      notify("Project created.");
+    } catch (caught) {
+      setActionError(
+        caught instanceof Error
+          ? caught.message
+          : "The project could not be created.",
+      );
+      throw caught;
+    }
+  }
+
   async function changeStatus(task: Task, nextStatus: TaskStatus) {
     if (task.status === nextStatus) return;
     setBusyId(task.id);
-    setError(null);
+    setActionError(null);
     try {
       const updated = await repository.update(task.id, { status: nextStatus });
       setTasks((current) =>
-        current.map((item) => (item.id === updated.id ? updated : item)),
+        current.map((item) => {
+          if (item.id === updated.id) return updated;
+          if (
+            item.id === updated.parentTaskId &&
+            updated.status !== "completed" &&
+            item.status === "completed"
+          )
+            return {
+              ...item,
+              status: "todo",
+              completedAt: null,
+              updatedAt: updated.updatedAt,
+            };
+          return item;
+        }),
       );
       notify(
         nextStatus === "completed" ? "Task completed." : "Task status updated.",
       );
     } catch (caught) {
-      setError(
+      setActionError(
         caught instanceof Error
           ? caught.message
           : "The status could not be updated.",
@@ -208,7 +414,7 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
   async function deleteTask() {
     if (!deleteTarget) return;
     setBusyId(deleteTarget.id);
-    setError(null);
+    setActionError(null);
     try {
       await repository.remove(deleteTarget.id);
       setTasks((current) =>
@@ -217,7 +423,7 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
       setDeleteTarget(null);
       notify("Task deleted.");
     } catch (caught) {
-      setError(
+      setActionError(
         caught instanceof Error
           ? caught.message
           : "The task could not be deleted.",
@@ -326,92 +532,112 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
                 </p>
               </article>
             </section>
+          ) : view === "projects" ? (
+            <ProjectPanel
+              projects={projects}
+              tasks={tasks}
+              selectedProjectId={selectedProjectId}
+              busyId={busyId}
+              onSelect={setSelectedProjectId}
+              onCreate={createProject}
+              onEdit={(selected) => setEditor(selected)}
+              onDelete={setDeleteTarget}
+              onStatus={changeStatus}
+              projectLoad={projectLoad}
+              taskLoad={taskLoad}
+              onRetryProjects={() => void loadProjectData()}
+              onReload={loadWorkspace}
+            />
           ) : (
             <div className="grid gap-5">
-              <StatsGrid stats={stats} />
-              <TaskFilters
-                query={query}
-                status={status}
-                priority={priority}
-                sort={sort}
-                onQuery={setQuery}
-                onStatus={setStatus}
-                onPriority={setPriority}
-                onSort={setSort}
-              />
-
-              {error && (
+              {actionError && (
                 <div
                   className="flex flex-col gap-3 rounded-2xl border border-[color-mix(in_srgb,var(--danger)_35%,transparent)] bg-[color-mix(in_srgb,var(--danger)_8%,var(--surface))] p-4 sm:flex-row sm:items-center sm:justify-between"
                   role="alert"
                 >
-                  <p className="font-medium text-[var(--danger)]">{error}</p>
-                  <button
-                    className="secondary-button px-4"
-                    onClick={() => void loadTasks()}
-                  >
-                    Retry
-                  </button>
+                  <p className="font-medium text-[var(--danger)]">
+                    {actionError}
+                  </p>
                 </div>
               )}
-
-              <section aria-label="Task list" className="grid gap-3">
-                {loading ? (
-                  <div
-                    className="surface-card grid min-h-48 place-items-center rounded-2xl p-8 text-center"
-                    aria-live="polite"
-                  >
-                    <div>
-                      <LoaderCircle
-                        className="mx-auto animate-spin text-[var(--primary)]"
-                        size={28}
-                        aria-hidden="true"
-                      />
-                      <p className="mt-3 font-bold">Loading tasks…</p>
-                    </div>
-                  </div>
-                ) : visibleTasks.length ? (
-                  visibleTasks.map((task) => (
-                    <TaskCard
-                      key={task.id}
-                      task={task}
-                      busy={busyId === task.id}
-                      onEdit={(selected) => setEditor(selected)}
-                      onDelete={setDeleteTarget}
-                      onStatus={changeStatus}
-                    />
-                  ))
-                ) : (
-                  <div className="surface-card grid min-h-60 place-items-center rounded-2xl p-8 text-center">
-                    <div>
-                      <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[color-mix(in_srgb,var(--primary)_10%,var(--surface-raised))] text-[var(--primary)]">
-                        <ClipboardList size={26} aria-hidden="true" />
-                      </span>
-                      <h2 className="font-display mt-4 text-2xl font-bold">
-                        No tasks match this view
-                      </h2>
-                      <p className="mx-auto mt-2 max-w-md text-[var(--muted-foreground)]">
-                        Adjust the filters, or capture a new task and give it a
-                        clear next action.
-                      </p>
-                      <button
-                        className="primary-button mt-5 inline-flex items-center gap-2 px-5"
-                        onClick={() => setEditor(null)}
-                      >
-                        <Plus size={18} aria-hidden="true" />
-                        Create a task
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </section>
+              {workspaceLoading ? (
+                <ResourceState state="loading" label="workspace" />
+              ) : workspaceFailure ? (
+                <ResourceState
+                  state="error"
+                  label="workspace data"
+                  failure={workspaceFailure}
+                  onRetry={() => void loadWorkspace()}
+                />
+              ) : (
+                <>
+                  <StatsGrid stats={stats} />
+                  <TaskFilters
+                    query={query}
+                    status={status}
+                    priority={priority}
+                    projectId={projectId}
+                    dayNumber={dayNumber}
+                    category={category}
+                    projects={projects}
+                    days={days}
+                    categories={categories}
+                    sort={sort}
+                    onQuery={setQuery}
+                    onStatus={setStatus}
+                    onPriority={setPriority}
+                    onProject={setProjectId}
+                    onDay={setDayNumber}
+                    onCategory={setCategory}
+                    onSort={setSort}
+                  />
+                  <section aria-label="Task list" className="grid gap-3">
+                    {visibleTasks.length ? (
+                      visibleTasks.map((task) => (
+                        <TaskCard
+                          key={task.id}
+                          task={task}
+                          tasks={tasks}
+                          projects={projects}
+                          busy={busyId === task.id}
+                          onEdit={(selected) => setEditor(selected)}
+                          onDelete={setDeleteTarget}
+                          onStatus={changeStatus}
+                        />
+                      ))
+                    ) : (
+                      <div className="surface-card grid min-h-60 place-items-center rounded-2xl p-8 text-center">
+                        <div>
+                          <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-[color-mix(in_srgb,var(--primary)_10%,var(--surface-raised))] text-[var(--primary)]">
+                            <ClipboardList size={26} aria-hidden="true" />
+                          </span>
+                          <h2 className="font-display mt-4 text-2xl font-bold">
+                            No tasks match this view
+                          </h2>
+                          <p className="mx-auto mt-2 max-w-md text-[var(--muted-foreground)]">
+                            Adjust the filters, or capture a new task and give
+                            it a clear next action.
+                          </p>
+                          <button
+                            className="primary-button mt-5 inline-flex items-center gap-2 px-5"
+                            onClick={() => setEditor(null)}
+                          >
+                            <Plus size={18} aria-hidden="true" />
+                            Create a task
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </section>
+                </>
+              )}
             </div>
           )}
         </main>
       </div>
 
       <nav
-        className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_96%,transparent)] px-1 py-1 backdrop-blur-xl lg:hidden"
+        className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-6 border-t border-[var(--border)] bg-[color-mix(in_srgb,var(--surface)_96%,transparent)] px-1 py-1 backdrop-blur-xl lg:hidden"
         aria-label="Mobile navigation"
       >
         {mobileNavItems.map((item) => {
@@ -434,6 +660,8 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
       {editor !== undefined && (
         <TaskForm
           task={editor}
+          tasks={tasks}
+          projects={projects}
           busy={saving}
           onClose={() => setEditor(undefined)}
           onSubmit={submitTask}
