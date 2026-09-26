@@ -6,6 +6,9 @@ import { useEffect } from "react";
 interface ConfirmDialogProps {
   itemName: string;
   busy: boolean;
+  kind?: "task" | "project";
+  relatedCount?: number;
+  error?: string | null;
   onCancel(): void;
   onConfirm(): Promise<void>;
 }
@@ -13,6 +16,9 @@ interface ConfirmDialogProps {
 export function ConfirmDialog({
   itemName,
   busy,
+  kind = "task",
+  relatedCount = 0,
+  error,
   onCancel,
   onConfirm,
 }: ConfirmDialogProps) {
@@ -40,29 +46,40 @@ export function ConfirmDialog({
           <AlertTriangle size={23} aria-hidden="true" />
         </span>
         <h2 id="delete-title" className="font-display mt-4 text-2xl font-bold">
-          Delete this task?
+          Delete this {kind}?
         </h2>
         <p
           id="delete-description"
           className="mt-2 text-[var(--muted-foreground)]"
         >
-          <strong className="text-[var(--foreground)]">{itemName}</strong> will
-          be permanently removed. This action cannot be undone.
+          <strong className="text-[var(--foreground)]">{itemName}</strong>
+          {relatedCount > 0
+            ? ` and ${relatedCount} ${kind === "project" ? "task" : "subtask"}${relatedCount === 1 ? "" : "s"}`
+            : ""}{" "}
+          will be permanently removed. This action cannot be undone.
         </p>
+        {error && (
+          <p
+            className="mt-4 rounded-xl border border-[var(--danger)] p-3 text-sm text-[var(--danger)]"
+            role="alert"
+          >
+            {error}
+          </p>
+        )}
         <div className="mt-6 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
           <button
             className="secondary-button px-5"
             onClick={onCancel}
             disabled={busy}
           >
-            Keep task
+            Keep {kind}
           </button>
           <button
             className="min-h-11 rounded-xl bg-[var(--danger)] px-5 font-extrabold text-white"
             onClick={() => void onConfirm()}
             disabled={busy}
           >
-            {busy ? "Deleting…" : "Delete task"}
+            {busy ? "Deleting…" : `Delete ${kind}`}
           </button>
         </div>
       </section>

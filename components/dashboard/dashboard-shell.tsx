@@ -136,6 +136,8 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
   const [mobileNav, setMobileNav] = useState(false);
   const [editor, setEditor] = useState<Task | null | undefined>(undefined);
   const [deleteTarget, setDeleteTarget] = useState<Task | null>(null);
+  const [deleteProjectTarget, setDeleteProjectTarget] =
+    useState<Project | null>(null);
   const [busyId, setBusyId] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -417,9 +419,20 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
     setActionError(null);
     try {
       await repository.remove(deleteTarget.id);
-      setTasks((current) =>
-        current.filter((task) => task.id !== deleteTarget.id),
-      );
+      setTasks((current) => {
+        const removed = new Set([deleteTarget.id]);
+        for (const task of current) {
+          if (task.parentTaskId === deleteTarget.id) removed.add(task.id);
+        }
+        return current
+          .filter((task) => !removed.has(task.id))
+          .map((task) => ({
+            ...task,
+            dependencyIds: task.dependencyIds.filter(
+              (dependencyId) => !removed.has(dependencyId),
+            ),
+          }));
+      });
       setDeleteTarget(null);
       notify("Task deleted.");
     } catch (caught) {
@@ -431,6 +444,40 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
     } finally {
       setBusyId(null);
     }
+  }
+
+  async function deleteProject() {
+    if (!deleteProjectTarget) return;
+    const id = deleteProjectTarget.id;
+    setBusyId(id);
+    setActionError(null);
+    try {
+      await projectRepository.remove(id);
+      setProjects((current) => current.filter((project) => project.id !== id));
+      setTasks((current) => current.filter((task) => task.projectId !== id));
+      setSelectedProjectId("");
+      setProjectId((current) => (current === id ? "all" : current));
+      setDeleteProjectTarget(null);
+      notify("Project and its tasks deleted.");
+    } catch (caught) {
+      setActionError(
+        caught instanceof Error
+          ? caught.message
+          : "The project could not be deleted.",
+      );
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  function openTaskDelete(task: Task) {
+    setActionError(null);
+    setDeleteTarget(task);
+  }
+
+  function openProjectDelete(project: Project) {
+    setActionError(null);
+    setDeleteProjectTarget(project);
   }
 
   return (
@@ -502,6 +549,15 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
             )}
           </div>
 
+          {actionError && !deleteTarget && !deleteProjectTarget && (
+            <div
+              className="mb-5 flex flex-col gap-3 rounded-2xl border border-[color-mix(in_srgb,var(--danger)_35%,transparent)] bg-[color-mix(in_srgb,var(--danger)_8%,var(--surface))] p-4 sm:flex-row sm:items-center sm:justify-between"
+              role="alert"
+            >
+              <p className="font-medium text-[var(--danger)]">{actionError}</p>
+            </div>
+          )}
+
           {view === "settings" ? (
             <section className="grid gap-4 md:grid-cols-2">
               <article className="surface-card rounded-2xl p-6">
@@ -540,8 +596,9 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
               busyId={busyId}
               onSelect={setSelectedProjectId}
               onCreate={createProject}
+              onDeleteProject={openProjectDelete}
               onEdit={(selected) => setEditor(selected)}
-              onDelete={setDeleteTarget}
+              onDelete={openTaskDelete}
               onStatus={changeStatus}
               projectLoad={projectLoad}
               taskLoad={taskLoad}
@@ -550,16 +607,6 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
             />
           ) : (
             <div className="grid gap-5">
-              {actionError && (
-                <div
-                  className="flex flex-col gap-3 rounded-2xl border border-[color-mix(in_srgb,var(--danger)_35%,transparent)] bg-[color-mix(in_srgb,var(--danger)_8%,var(--surface))] p-4 sm:flex-row sm:items-center sm:justify-between"
-                  role="alert"
-                >
-                  <p className="font-medium text-[var(--danger)]">
-                    {actionError}
-                  </p>
-                </div>
-              )}
               {workspaceLoading ? (
                 <ResourceState state="loading" label="workspace" />
               ) : workspaceFailure ? (
@@ -601,7 +648,7 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
                           projects={projects}
                           busy={busyId === task.id}
                           onEdit={(selected) => setEditor(selected)}
-                          onDelete={setDeleteTarget}
+                          onDelete={openTaskDelete}
                           onStatus={changeStatus}
                         />
                       ))
@@ -671,8 +718,26 @@ export function DashboardShell({ mode, userEmail }: DashboardShellProps) {
         <ConfirmDialog
           itemName={deleteTarget.title}
           busy={busyId === deleteTarget.id}
+          error={actionError}
+          relatedCount={
+            tasks.filter((task) => task.parentTaskId === deleteTarget.id).length
+          }
           onCancel={() => setDeleteTarget(null)}
           onConfirm={deleteTask}
+        />
+      )}
+      {deleteProjectTarget && (
+        <ConfirmDialog
+          kind="project"
+          itemName={deleteProjectTarget.name}
+          relatedCount={
+            tasks.filter((task) => task.projectId === deleteProjectTarget.id)
+              .length
+          }
+          busy={busyId === deleteProjectTarget.id}
+          error={actionError}
+          onCancel={() => setDeleteProjectTarget(null)}
+          onConfirm={deleteProject}
         />
       )}
       <div

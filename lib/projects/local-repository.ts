@@ -1,4 +1,5 @@
 import type { ProjectRepository } from "@/lib/projects/repository";
+import { removeLocalProjectTasks } from "@/lib/tasks/local-repository";
 import { projectInputSchema } from "@/lib/validation/task";
 import type { Project, ProjectInput } from "@/types/task";
 
@@ -28,5 +29,15 @@ export class LocalProjectRepository implements ProjectRepository {
       JSON.stringify([...readProjects(), project]),
     );
     return project;
+  }
+  async remove(id: string) {
+    const projects = readProjects();
+    if (!projects.some((project) => project.id === id))
+      throw new Error("That project no longer exists.");
+    removeLocalProjectTasks(id);
+    window.localStorage.setItem(
+      PROJECTS_KEY,
+      JSON.stringify(projects.filter((project) => project.id !== id)),
+    );
   }
 }

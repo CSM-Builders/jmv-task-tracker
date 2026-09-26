@@ -38,4 +38,9 @@ export class RemoteProjectRepository implements ProjectRepository {
       body: JSON.stringify(input),
     });
   }
+  remove(id: string) {
+    return request<void>(`/api/projects/${encodeURIComponent(id)}`, {
+      method: "DELETE",
+    });
+  }
 }

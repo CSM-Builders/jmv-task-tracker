@@ -57,3 +57,37 @@ export async function GET(
     },
   });
 }
+
+export async function DELETE(
+  _request: Request,
+  context: { params: Promise<{ id: string }> },
+) {
+  const { id } = await context.params;
+  if (!taskIdSchema.safeParse(id).success)
+    return NextResponse.json(
+      { error: "Invalid project identifier." },
+      { status: 400 },
+    );
+  const supabase = await createClient();
+  const { data: userData, error: authError } = await supabase.auth.getUser();
+  if (authError || !userData.user)
+    return NextResponse.json({ error: "Please sign in." }, { status: 401 });
+
+  const { data, error } = await supabase.rpc("delete_project", {
+    p_project_id: id,
+  });
+  if (error)
+    return NextResponse.json(
+      {
+        error:
+          error.code === "PGRST202"
+            ? "Project deletion is not installed in this database. Apply migration 003."
+            : "Project could not be deleted.",
+        code: error.code,
+      },
+      { status: 409 },
+    );
+  if (!data)
+    return NextResponse.json({ error: "Project not found." }, { status: 404 });
+  return NextResponse.json({ data: null });
+}

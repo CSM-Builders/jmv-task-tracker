@@ -3,6 +3,7 @@ import type { Project, ProjectInput } from "@/types/task";
 export interface ProjectRepository {
   list(): Promise<Project[]>;
   create(input: ProjectInput): Promise<Project>;
+  remove(id: string): Promise<void>;
 }
 
 export class ProjectRepositoryError extends Error {

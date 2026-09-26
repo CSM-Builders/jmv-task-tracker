@@ -127,4 +127,38 @@ test("projects derive progress from leaf subtasks", async ({ page }) => {
     .selectOption("completed");
   await expect(page.getByText("1/1 (100%)")).toBeVisible();
   await expect(page.getByText("60 min")).toBeVisible();
+
+  await page.getByRole("button", { name: "Delete Day 1 milestone" }).click();
+  await expect(page.getByRole("alertdialog")).toContainText("and 1 subtask");
+  await page.getByRole("button", { name: "Delete task", exact: true }).click();
+  await expect(page.getByText("0/0 (0%)")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Draft architecture" }),
+  ).toHaveCount(0);
+
+  await page.getByRole("button", { name: "New Task" }).click();
+  await page
+    .getByRole("textbox", { name: /Title/ })
+    .fill("Project cleanup task");
+  await page
+    .getByLabel("Project", { exact: true })
+    .selectOption({ label: "Interview sprint" });
+  await page.getByRole("button", { name: "Create task" }).click();
+  await page
+    .getByRole("button", { name: "Delete project Interview sprint" })
+    .click();
+  await expect(page.getByRole("alertdialog")).toContainText("and 1 task");
+  await page
+    .getByRole("button", { name: "Delete project", exact: true })
+    .click();
+  await expect(page.getByText("No projects yet")).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Project cleanup task" }),
+  ).toHaveCount(0);
+  await page.reload();
+  await page
+    .getByRole("button", { name: "Projects", exact: true })
+    .first()
+    .click();
+  await expect(page.getByText("No projects yet")).toBeVisible();
 });
