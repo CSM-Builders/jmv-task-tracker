@@ -135,8 +135,25 @@ export async function DELETE(_request: Request, context: RouteContext) {
       { error: "Please sign in to delete tasks." },
       { status: 401 },
     );
-  const { error } = await supabase.from("tasks").delete().eq("id", id);
+  const { data, error } = await supabase
+    .from("tasks")
+    .delete()
+    .eq("id", id)
+    .eq("user_id", user.id)
+    .select("id")
+    .maybeSingle();
   if (error)
-    return NextResponse.json({ error: error.message }, { status: 400 });
+    return NextResponse.json(
+      {
+        error:
+          error.code === "23503"
+            ? "Task deletion is blocked by an old database relationship. Apply migration 003."
+            : "Task could not be deleted.",
+        code: error.code,
+      },
+      { status: 409 },
+    );
+  if (!data)
+    return NextResponse.json({ error: "Task not found." }, { status: 404 });
   return NextResponse.json({ data: null });
 }

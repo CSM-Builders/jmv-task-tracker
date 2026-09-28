@@ -119,6 +119,7 @@ The UI depends on a `TaskRepository` interface. Demo Mode selects `LocalTaskRepo
 
 6. In Supabase, open **SQL Editor**, create a new query, paste the full contents of `supabase/migrations/001_create_tasks.sql`, and run it once.
    - Existing installations must then apply `supabase/migrations/002_add_projects_hierarchy_and_import.sql` once. Back up and validate in a test project first; never rerun migration 001 as a reset.
+   - Install `supabase/migrations/003_cascade_task_and_project_deletion.sql` once before using the confirmed task and project deletion actions. See [the deletion rollout guide](docs/DELETE_ROLLOUT.md).
 7. Open **Authentication → Providers → Email** and keep Email/Password enabled.
 8. For local development, add `http://localhost:3000` as the Site URL or an allowed redirect URL under **Authentication → URL Configuration**.
 9. Restart `npm run dev`. The root route now redirects signed-out visitors to `/sign-in`.

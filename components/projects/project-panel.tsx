@@ -1,6 +1,6 @@
 "use client";
 
-import { FolderKanban, Plus } from "lucide-react";
+import { FolderKanban, Plus, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { TaskCard } from "@/components/tasks/task-card";
 import { ImportPanel } from "@/components/projects/import-panel";
@@ -27,6 +27,7 @@ interface Props {
   };
   onSelect(id: string): void;
   onCreate(input: ProjectInput): Promise<void>;
+  onDeleteProject(project: Project): void;
   onEdit(task: Task): void;
   onDelete(task: Task): void;
   onStatus(task: Task, status: TaskStatus): Promise<void>;
@@ -52,6 +53,7 @@ export function ProjectPanel({
   taskLoad,
   onSelect,
   onCreate,
+  onDeleteProject,
   onEdit,
   onDelete,
   onStatus,
@@ -351,12 +353,26 @@ export function ProjectPanel({
       ) : (
         <>
           <article className="surface-card rounded-2xl p-6">
-            <p className="text-xs font-extrabold tracking-[0.18em] text-[var(--primary)]">
-              PROJECT OVERVIEW
-            </p>
-            <h2 className="font-display mt-2 text-3xl font-bold">
-              {project.name}
-            </h2>
+            <div className="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-extrabold tracking-[0.18em] text-[var(--primary)]">
+                  PROJECT OVERVIEW
+                </p>
+                <h2 className="font-display mt-2 text-3xl font-bold">
+                  {project.name}
+                </h2>
+              </div>
+              <button
+                type="button"
+                className="secondary-button inline-flex items-center gap-2 px-4 text-[var(--danger)]"
+                aria-label={`Delete project ${project.name}`}
+                disabled={taskLoad.status !== "ready" || busyId === project.id}
+                onClick={() => onDeleteProject(project)}
+              >
+                <Trash2 size={16} aria-hidden="true" />
+                Delete project
+              </button>
+            </div>
             {project.description && (
               <p className="mt-3 whitespace-pre-wrap text-[var(--muted-foreground)]">
                 {project.description}

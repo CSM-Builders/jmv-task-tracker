@@ -64,6 +64,9 @@ describe("local demo migration", () => {
         projectId: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb",
       }),
     ).rejects.toThrow("same project");
-    await expect(repository.remove(first.id)).rejects.toThrow("children");
+    await repository.remove(first.id);
+    await expect(repository.list()).resolves.toMatchObject([
+      { id: second.id, dependencyIds: [] },
+    ]);
   });
 });

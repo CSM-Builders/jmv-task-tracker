@@ -12,6 +12,7 @@ const baseProps = {
   taskLoad: { status: "ready" as const, failure: null },
   onSelect: vi.fn(),
   onCreate: vi.fn(async () => {}),
+  onDeleteProject: vi.fn(),
   onEdit: vi.fn(),
   onDelete: vi.fn(),
   onStatus: vi.fn(async () => {}),

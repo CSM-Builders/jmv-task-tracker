@@ -50,6 +50,11 @@ function saveTasks(tasks: Task[]) {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 }
 
+export function removeLocalProjectTasks(projectId: string) {
+  const tasks = readTasks();
+  saveTasks(tasks.filter((task) => task.projectId !== projectId));
+}
+
 function validateDependencies(
   tasks: Task[],
   taskId: string | null,
@@ -230,14 +235,19 @@ export class LocalTaskRepository implements TaskRepository {
     const tasks = readTasks();
     if (!tasks.some((task) => task.id === id))
       throw new TaskRepositoryError("That task no longer exists.");
-    if (tasks.some((task) => task.parentTaskId === id))
-      throw new TaskRepositoryError(
-        "Delete or move this task's children before deleting it.",
-      );
-    if (tasks.some((task) => task.dependencyIds.includes(id)))
-      throw new TaskRepositoryError(
-        "Remove this task from dependent tasks before deleting it.",
-      );
-    saveTasks(tasks.filter((task) => task.id !== id));
+    const removed = new Set([id]);
+    for (const task of tasks) {
+      if (task.parentTaskId === id) removed.add(task.id);
+    }
+    saveTasks(
+      tasks
+        .filter((task) => !removed.has(task.id))
+        .map((task) => ({
+          ...task,
+          dependencyIds: task.dependencyIds.filter(
+            (dependencyId) => !removed.has(dependencyId),
+          ),
+        })),
+    );
   }
 }
