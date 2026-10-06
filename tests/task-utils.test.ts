@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   filterTasks,
+  isProjectCompleted,
   isOverdue,
   sortTasks,
   taskStats,
@@ -72,5 +73,27 @@ describe("task utilities", () => {
       overdue: 1,
       completionRate: 33,
     });
+  });
+
+  it("retires a project only after it has tasks and all statuses are completed", () => {
+    const parent = makeTask({ id: "parent", projectId: "p", status: "todo" });
+    const child = makeTask({
+      id: "child",
+      projectId: "p",
+      parentTaskId: "parent",
+      status: "completed",
+    });
+
+    expect(isProjectCompleted("p", [])).toBe(false);
+    expect(isProjectCompleted("p", [parent, child])).toBe(false);
+    expect(
+      isProjectCompleted("p", [{ ...parent, status: "completed" }, child]),
+    ).toBe(true);
+    expect(
+      isProjectCompleted("p", [
+        { ...parent, status: "completed" },
+        { ...child, status: "todo" },
+      ]),
+    ).toBe(false);
   });
 });

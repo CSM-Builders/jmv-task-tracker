@@ -162,3 +162,53 @@ test("projects derive progress from leaf subtasks", async ({ page }) => {
     .click();
   await expect(page.getByText("No projects yet")).toBeVisible();
 });
+
+test("completed projects move to History and return when work is reopened", async ({
+  page,
+}) => {
+  await page
+    .getByRole("button", { name: "Projects", exact: true })
+    .first()
+    .click();
+  await page.getByRole("button", { name: "New project" }).click();
+  await page.locator('form input[name="name"]').fill("History test project");
+  await page.getByRole("button", { name: "Create project" }).click();
+
+  await page.getByRole("button", { name: "New Task" }).click();
+  await page.getByRole("textbox", { name: /Title/ }).fill("History test task");
+  await page
+    .getByLabel("Project", { exact: true })
+    .selectOption({ label: "History test project" });
+  await page.getByRole("button", { name: "Create task" }).click();
+  await page
+    .getByLabel("Change status for History test task")
+    .selectOption("completed");
+
+  await expect(
+    page.getByRole("heading", { name: "All projects completed" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "History test task" }),
+  ).toHaveCount(0);
+  await page.getByRole("tab", { name: "History" }).click();
+  await expect(
+    page.getByRole("heading", { name: "History test project" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "History test task" }),
+  ).toBeVisible();
+
+  await page
+    .getByLabel("Change status for History test task")
+    .selectOption("todo");
+  await expect(
+    page.getByRole("heading", { name: "No completed work yet" }),
+  ).toBeVisible();
+  await page.getByRole("tab", { name: "Active" }).click();
+  await expect(
+    page.getByRole("heading", { name: "History test project" }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "History test task" }),
+  ).toBeVisible();
+});

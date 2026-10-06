@@ -176,3 +176,12 @@ export function projectProgress(projectId: string, tasks: Task[]) {
     ),
   };
 }
+
+export function isProjectCompleted(projectId: string, tasks: Task[]) {
+  // A project has no stored status; empty or partially finished projects stay active.
+  const projectTasks = tasks.filter((task) => task.projectId === projectId);
+  return (
+    projectTasks.length > 0 &&
+    projectTasks.every((task) => task.status === "completed")
+  );
+}
